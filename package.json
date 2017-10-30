@@ -1,0 +1,33 @@
+{
+  "name": "generator-cool",
+  "version": "0.0.1",
+  "description": "A generator using Yoeman to generate files for endusers.",
+  "author": "RJAVA1990<liuxuheng1990@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RJAVA1990/generator-cool.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": ["generators"],
+  "keywords": ["yeoman-generator"],
+  "engines": {
+    "node": ">=7"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^4.2.1",
+    "@commitlint/config-angular": "^4.2.1",
+    "commitizen": "^2.9.6",
+    "eslint": "^3.19.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
