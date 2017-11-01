@@ -1,0 +1,37 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.1",
+  "description": "<%= description %>",
+  "license": "<%= license %>",
+  "engines": {
+    "node": ">=7"
+  },
+  "scripts": {
+    "build": "cool-cli build",
+    "start": "cool-cli start"
+  },
+  "devDependencies": {
+    "cool-cli": "0.0.4",
+    "@commitlint/cli": "^4.2.1",
+    "@commitlint/config-angular": "^4.2.1",
+    "commitizen": "^2.9.6",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
+  },
+  "dependencies": {
+    "history": "^4.7.2",
+    "mobx": "^2.0.0",
+    "mobx-react": "^3.0.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-router": "^4.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
