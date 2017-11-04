@@ -80,6 +80,11 @@ class GeneratorCool extends Generator {
       this.destinationPath('.eslintrc.js')
     );
 
+    this.fs.copy(
+      this.templatePath('_tsconfig.json'),
+      this.destinationPath('tsconfig.json')
+    );
+
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'),
