@@ -11,6 +11,18 @@ class GeneratorCool extends Generator {
         default: this.appname,
       },
       {
+        type: 'input',
+        name: 'title',
+        message: 'Please enter a title for your project html file',
+        default: 'Title',
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Please enter a description for your project',
+        default: 'Cool project!!!',
+      },
+      {
         type: 'list',
         name: 'license',
         message: 'Which license would you like to use?',
@@ -38,13 +50,6 @@ class GeneratorCool extends Generator {
           },
         ],
       },
-      {
-        type: 'input',
-        name: 'description',
-        message: 'Please enter a description for your project',
-        default: 'Cool project!!!',
-      },
-
       {
         type: 'confirm',
         name: 'installDeps',
@@ -102,6 +107,7 @@ class GeneratorCool extends Generator {
       {
         name: this.props.name,
         description: this.props.description,
+        title: this.props.title,
       }
     );
   }
