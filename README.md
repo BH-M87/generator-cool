@@ -1,2 +1,2 @@
 # generator-cool
-A generator using Yoeman to generate files for endusers.
+A generator using [Yoeman](http://yeoman.io/) to generate files for endusers.
