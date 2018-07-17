@@ -1,0 +1,182 @@
+$prefix: top-bar;
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  &-icon,
+  &-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+@mixin primary-button() {
+  width: 102px;
+  color: #fff;
+  font-size: 16px;
+}
+
+@mixin second-button($width: 70px) {
+  height: 100%;
+  width: $width;
+  font-size: 14px;
+  color: #fff;
+}
+
+.#{$prefix}- {
+  &container {
+    height: 100%;
+    a {
+      color: inherit;
+    }
+  }
+  &top-bar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    background: #1b2126;
+    height: 50px;
+  }
+  &children {
+    height: 100%;
+    padding-top: 50px;
+  }
+  &background {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  &left-part {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    z-index: 1000;
+    width: 100%;
+  }
+  &right-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1000;
+    min-width: 100px;
+    color: #fff;
+  }
+  &logo {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    padding-left: 18px;
+  }
+  &main-button {
+    @include flex-center();
+    margin-left: 100px;
+    // a {
+    //   height: 100%;
+    // }
+  }
+  &user {
+    font-size: 16px !important;
+  }
+  &down {
+    margin-right: 20px;
+    margin-left: 5px;
+    transition: .3s;
+  }
+  &reverse {
+    margin-right: 20px;
+    margin-left: 5px;
+    transform: rotate(180deg) !important;
+    transition: 0.3s;
+  }
+  &nav-item {
+    @include flex-center();
+    @include primary-button();
+    cursor: pointer;
+    height: 50px;
+  }
+  &menu-item {
+    color: #fff !important;
+    font-size: 12px !important;
+    margin-bottom: 5px;
+    padding: 5px 15px !important;
+    margin-top: 9px !important;
+  }
+  &menu-item span {
+    margin-left: 5px;
+  }
+  &menu-item:hover {
+    background: none !important;
+    color: #09d0ee !important;
+  }
+  &menu {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+  &model {
+    display: inherit;
+  }
+  &icon {
+    font-size: 19px !important;
+    margin-right: 8px;
+  }
+  &selectd {
+    width: 120px;
+    height: 30px;
+    border-left: 2px solid rgba(238, 238, 238, 0.2);
+    margin-top: 10px;
+    margin-left: 35px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+  }
+  &setting-item {
+    @include flex-center();
+    @include second-button('auto');
+    padding: 0 19px;
+    cursor: pointer;
+  }
+  &selected {
+    background: #0f1215;
+    border-bottom: 3px solid #09d0ee;
+    opacity: 1;
+  }
+  &user-drop {
+    background: #1b2126;
+    height: 40px;
+    margin-top: -5px;
+    color: #fff;
+    .#{$prefix}-logout {
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      width: 100%;
+    }
+    .#{$prefix}-logout:hover {
+      background: #0f1215;
+    }
+  }
+  &hover {
+    background: #0f1215;
+  }
+  &nav-menu {
+    background: #1b2126 !important;
+  }
+  &nav-menu-item {
+    text-align: center !important;
+    line-height: 25px;
+  }
+  &item-selected {
+    background: #405562 !important;
+  }
+}

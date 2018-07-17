@@ -1,0 +1,20 @@
+$prefix: bread-crumb;
+.#{$prefix}- {
+  &bread-crumb {
+    font-size: 16px;
+    color: #333333;
+    &-item {
+      line-height: 22px;
+      border: none;
+      background: transparent;
+    }
+    &-highlight-item {
+      color: #4ac7ea;
+    }
+    .ant-breadcrumb-link {
+      a:hover {
+        color: #333333;
+      }
+    }
+  }
+}

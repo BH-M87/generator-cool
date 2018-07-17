@@ -1,0 +1,11 @@
+$prefix: search-input;
+.#{$prefix}- {
+  &search {
+    width: 200px;
+    background: #ffffff;
+  }
+  &search-icon {
+    cursor: pointer;
+    font-size: 14px;
+  }
+}

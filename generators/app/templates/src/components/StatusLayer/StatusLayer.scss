@@ -1,0 +1,47 @@
+$prefix: status-layer;
+@keyframes loading-fade-delay {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.#{$prefix}- {
+  &light {
+    background: rgba(255, 255, 255, 0.9);
+    color: #999;
+  }
+  &dark {
+    background: rgba(52, 61, 67, 0.9);
+    color: #fff;
+  }
+  &container {
+    height: 100%;
+    position: relative;
+  }
+  &content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  &icon {
+    margin-right: 5px;
+    font-size: 24px;
+    line-height: 24px;
+    z-index: 1;
+  }
+  &loading-icon {
+    animation: loading-fade-delay 1s linear infinite;
+  }
+  &font {
+    font-size: 12px;
+  }
+}

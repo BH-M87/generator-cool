@@ -1,0 +1,11 @@
+$prefix: avatar;
+.#{$prefix}- {
+  &avatar {
+    .ant-avatar > * {
+      line-height: inherit;
+    }
+    img {
+      vertical-align: baseline !important;
+    }
+  }
+}

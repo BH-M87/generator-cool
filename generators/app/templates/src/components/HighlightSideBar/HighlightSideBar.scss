@@ -1,0 +1,31 @@
+$prefix: highlight-side-bar;
+.#{$prefix}- {
+  &container {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    position: relative; // important!!! influence the offset caculation
+  }
+  &side-bar {
+    width: 180px;
+    height: 100%;
+    padding-top: 20px;
+    background: #24292d;
+    &-item {
+      font-size: 12px;
+      color: #999999;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
+  &current {
+    background: #2b363d;
+    border-left: 3px solid #00c1de;
+  }
+  &children {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+  }
+}

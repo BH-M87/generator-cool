@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>地图API－范例－基础地图展示</title>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta tabindex="">
+  <link rel="stylesheet" type="text/css" href="../sourceLinks/style.css" />
+  <script type="text/javascript" src="../../scripts/jsurl.js"></script>
+
+
+</head>
+
+<body>
+  <div id="map" class="map_contaner"></div>
+  <script type="text/javascript">
+    var map;
+
+    function initMap() {
+      map = new IMAP.Map("map", {
+        minZoom: 3,
+        maxZoom: 23,
+        zoom: LBS.zoom, //设置地图初始化级别
+        center: new IMAP.LngLat(LBS.centerX, LBS.centerY), //设置地图中心点坐标
+        animation: true //设置地图缩放动画效果
+      });
+    }
+    initMap();
+  </script>
+</body>
+
+</html>

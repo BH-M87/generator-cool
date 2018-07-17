@@ -1,0 +1,25 @@
+$prefix: tips;
+@mixin show-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.#{$prefix}- {
+  &container-wrap {
+    position: relative;
+  }
+  &container {
+    white-space: nowrap;
+    @include show-ellipsis();
+  }
+  &multiple {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  &popover {
+    max-width: 350px;
+    word-wrap: break-word;
+  }
+}

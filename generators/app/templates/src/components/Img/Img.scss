@@ -1,0 +1,17 @@
+$prefix:img;
+.#{$prefix}- {
+  &img-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(61, 73, 81);
+    width: 100%;
+    height: 100%;
+  }
+  &alt-element{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}

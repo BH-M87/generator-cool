@@ -1,0 +1,62 @@
+@mixin flex() {
+  display: flex;
+  align-items: center;
+}
+
+$prefix: point-selector;
+.#{$prefix}- {
+  &container {
+    height: 100%;
+    width: 100%;
+  }
+  &header {
+    @include flex();
+    height: 32px;
+    background: #eef4f7;
+    &-text {
+      font-size: 14px;
+      color: #333333;
+      margin: 0 16px;
+    }
+  }
+  &body {
+    margin: 0 16px;
+    padding-bottom: 12px;
+  }
+  &footer {
+    @include flex();
+    justify-content: flex-end;
+    padding: 12px 16px;
+    border-top: 1px solid #dddddd;
+  }
+  &lonlat {
+    @include flex();
+    margin-top: 16px;
+  }
+  &radius {
+    @include flex();
+    margin-top: 16px;
+  }
+  &direction {
+    @include flex();
+    margin-top: 16px;
+  }
+  &label {
+    font-size: 12px;
+    color: #333333;
+  }
+  &label-wrap {
+    width: 30px;
+    margin-right: 10px;
+  }
+  &cancel {
+    margin-right: 12px;
+    font-size: 12px;
+    color: #666666;
+  }
+  &confirm {
+    background: #09d0ee;
+    font-size: 12px;
+    color: #ffffff;
+  }
+}

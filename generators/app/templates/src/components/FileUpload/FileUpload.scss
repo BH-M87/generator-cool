@@ -1,0 +1,9 @@
+$prefix: file-upload;
+.#{$prefix}- {
+  &button {
+    background: #09d0ee;
+    border-radius: 1px;
+    width: 71px;
+    height: 26px;
+  }
+}

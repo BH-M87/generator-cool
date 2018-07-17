@@ -24,5 +24,10 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'react/require-default-props': 0,
     'jsx-a11y/img-redundant-alt': 0,
+    'func-names': 0,
+    'jsx-a11y/interactive-supports-focus': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'no-mixed-operators': 0,
+    'jsx-a11y/mouse-events-have-key-events': 0,
   },
 };

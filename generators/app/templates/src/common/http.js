@@ -1,24 +1,22 @@
 /* global location */
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
-import history from 'common/history';
+import utils from 'common/utils';
+import routeConfig from 'config/routeConfig';
+
+const { navTo } = utils;
 
 export class Http {
   defaultConfig = {
     csrf: {
-      api: '/getCsrfToken',
+      api: '/csrf/getCsrfToken',
       timeout: 11 * 60 * 10000,
-      getToken: response => response.token
+      getToken: response => response.token,
     },
     errorHook: error => {
       throw error;
     },
-    notLoginInErrorCode: 2001,
-    notLoginIn: () => {
-      /* eslint no-restricted-globals:0 */
-      // history.push({ pathname: routeConfig.login, search: `?redirectUrl=${location.pathname}` });
-      history.push({ pathname: '/login' });
-    }
+    notLoginInErrorCode: 1029,
   };
 
   checkStatus(response) {
@@ -31,13 +29,19 @@ export class Http {
     throw error;
   }
 
+  notLoginIn() {
+    /* eslint no-restricted-globals:0 */
+    // history.push({ pathname: routeConfig.login, search: `?redirectUrl=${location.pathname}` });
+    navTo({ pathname: routeConfig.login });
+  }
+
   checkErrCode(dataObj) {
     const { errCode, data, errMsg } = dataObj;
     if (!errCode || errCode === 0) {
       return;
     }
     if (errCode === this.defaultConfig.notLoginInErrorCode) {
-      this.defaultConfig.notLoginIn();
+      this.notLoginIn();
     }
 
     const error = new Error(errMsg);
@@ -65,16 +69,16 @@ export class Http {
     try {
       const options = _.assign(
         {
-          credentials: 'include'
+          credentials: 'include',
         },
-        init
+        init,
       );
       options.headers = Object.assign(
         {
-          'x-requested-with': 'XMLHttpRequest'
+          'x-requested-with': 'XMLHttpRequest',
         },
         options.headers || {},
-        headers || {}
+        headers || {},
       );
       let response = await fetch(url, options);
       response = await this.processResult(response);
@@ -95,12 +99,16 @@ export class Http {
   set config(config) {
     this.defaultConfig = {
       ...this.defaultConfig,
-      ...config
+      ...config,
     };
   }
 
   token = null;
   async getCsrfToken() {
+    if (window.ajaxHeader && window.ajaxHeader['x-csrf-token']) {
+      this.token = window.ajaxHeader['x-csrf-token'];
+      return this.token;
+    }
     if (!this.token) {
       let response = await this.get(this.defaultConfig.csrf.api);
       if (this.defaultConfig.csrf.getToken) {
@@ -112,7 +120,7 @@ export class Http {
       // response is a object with attribute token
       this.token = response;
       setTimeout(() => {
-        this.token = undefined;
+        this.token = null;
       }, this.defaultConfig.csrf.timeout || 11 * 60 * 1000);
     }
     return this.token;
@@ -128,7 +136,7 @@ export class Http {
     const headers = {
       'Content-Type': 'application/json',
       'X-CSRF-TOKEN': token,
-      ...customeHeaders
+      ...customeHeaders,
     };
     const formBody = JSON.stringify(data);
     return this.request(
@@ -136,10 +144,10 @@ export class Http {
       {
         method: 'POST',
         headers,
-        body: formBody
+        body: formBody,
       },
       {},
-      config
+      config,
     );
   }
 }

@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import * as React from 'react';
 import Router from './routes';
+import './styles/index.less';
 import './styles/index.scss';
 
 const render = () => {

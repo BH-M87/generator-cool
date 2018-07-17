@@ -1,0 +1,25 @@
+$prefix: slider;
+.#{$prefix}- {
+  &container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    .ant-slider-step,
+    .ant-slider-track {
+      display: none;
+    }
+    .ant-slider-rail {
+      background-color: #d2dbe2;
+    }
+    .ant-slider-handle {
+      border-color: #d2dbe2;
+    }
+  }
+  &slider {
+    height: 100px !important;
+  }
+  &icon {
+    text-align: center;
+    cursor: pointer;
+  }
+}

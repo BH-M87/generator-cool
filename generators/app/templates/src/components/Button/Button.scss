@@ -1,0 +1,56 @@
+$prefix: button;
+.#{$prefix}- {
+  &button {
+    width: 90px;
+    height: 26px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 0 12px;
+    & > * {
+      letter-spacing: 0 !important;
+    }
+  }
+  &primary {
+    color: #fff !important;
+    background: #09d0ee !important;
+  }
+  &default {
+    border: 1px solid #ccc !important;
+    color: #666 !important;
+    background: transparent !important;
+  }
+  &content{
+    text-align: center;
+  }
+  &text {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    &.ant-btn {
+      &:active,
+      &:hover,
+      &:focus {
+        color: #81a2bf;
+      }
+    }
+    &.ant-btn-clicked:after {
+      animation: none;
+      content: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: inherit;
+      border: none;
+      opacity: 0;
+      -webkit-animation: none;
+    }
+  }
+  &content-text {
+    font-weight: initial;
+  }
+}

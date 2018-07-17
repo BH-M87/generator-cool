@@ -1,0 +1,32 @@
+$prefix: map;
+$marker-size: 24px;
+.#{$prefix}- {
+  &container {
+    width: 100%;
+    height: 100%;
+    .imap-marker-icon.imap-div-icon.imap-editing-icon.imap-edit-resize.imap-interactive.imap-marker-draggable {
+      font-size: 12px;
+      font-weight: bold;
+      line-height: $marker-size;
+      width: $marker-size !important;
+      height: $marker-size !important;
+      border-radius: $marker-size/2;
+      border: none;
+      background: rgb(83, 155, 237);
+      text-align: center;
+      &:after {
+        font-family: 'iconfont' !important;
+        content: '\e657';
+        color: #eee;
+      }
+    }
+  }
+  &cursor- {
+    &crosshair {
+      cursor: crosshair;
+    }
+    &grab {
+      cursor: grab;
+    }
+  }
+}

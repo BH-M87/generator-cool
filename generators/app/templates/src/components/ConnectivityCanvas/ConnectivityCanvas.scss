@@ -1,0 +1,42 @@
+$prefix: connectivity-canvas;
+$container-width: 10000px;
+$container-height: 10000px;
+
+.#{$prefix}- {
+  &container-wrap {
+    position: relative;
+    background-image: url('../../image/canvasBackground.png');
+    background-color: transparent;
+    height: 100%;
+    overflow: hidden;
+    cursor: grab;
+  }
+  &container-zoom {
+    height: 100%;
+  }
+  &is-drag {
+    cursor: grabbing;
+  }
+  &container {
+    position: relative;
+    width: $container-width;
+    height: $container-height;
+    .jtk-source-hover,
+    .jtk-target-hover {
+      .node-icon-wrap {
+        background-color: #09d0ee;
+        color: white;
+      }
+    }
+    .jtk-connector {
+      path {
+        cursor: pointer;
+      }
+    }
+  }
+  &drag-hover {
+    .node-icon-wrap {
+      border: 2px solid orange;
+    }
+  }
+}

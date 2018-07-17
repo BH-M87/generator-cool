@@ -8,54 +8,54 @@ class GeneratorCool extends Generator {
         name: 'name',
         message: 'Your project name',
         // Defaults to the project's folder name if not specified
-        default: this.appname,
+        default: this.appname
       },
       {
         type: 'input',
         name: 'title',
         message: 'Please enter a title for your project html file',
-        default: 'Title',
+        default: 'Title'
       },
       {
         type: 'input',
         name: 'description',
         message: 'Please enter a description for your project',
-        default: 'Cool project!!!',
+        default: 'Cool project!!!'
       },
       {
         type: 'list',
         name: 'license',
         message: 'Which license would you like to use?',
-        default: 'MIT',
+        default: 'No License',
         choices: [
           {
             name: 'No License',
             value: '',
-            short: 'None',
+            short: 'None'
           },
           {
             name: 'MIT',
             value: 'MIT',
-            short: 'MIT',
+            short: 'MIT'
           },
           {
             name: 'GPL-3.0',
             value: 'GPL-3.0',
-            short: 'GPL-3.0',
+            short: 'GPL-3.0'
           },
           {
             name: 'Apache-2.0',
             value: 'Apache-2.0',
-            short: 'Apache-2.0',
-          },
-        ],
+            short: 'Apache-2.0'
+          }
+        ]
       },
       {
         type: 'confirm',
         name: 'installDeps',
         message: 'Would you like to install all dependencies now?',
-        default: false,
-      },
+        default: false
+      }
     ]).then(answers => {
       this.props = answers;
     });
@@ -64,40 +64,34 @@ class GeneratorCool extends Generator {
   writing() {
     this.log('writing');
     // Package.json
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('package.json'),
-      {
-        name: this.props.name,
-        description: this.props.description,
-        license: this.props.license,
-      }
-    );
+    this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
+      name: this.props.name,
+      description: this.props.description,
+      license: this.props.license
+    });
 
     // .gitignore
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
+    this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+
+    this.fs.copy(this.templatePath('_eslintrc.js'), this.destinationPath('.eslintrc.js'));
+
+    this.fs.copy(this.templatePath('_tsconfig.json'), this.destinationPath('tsconfig.json'));
 
     this.fs.copy(
-      this.templatePath('_eslintrc.js'),
-      this.destinationPath('.eslintrc.js')
+      this.templatePath('_cool.dev.config.js'),
+      this.destinationPath('.cool.dev.config.js')
     );
 
-    this.fs.copy(
-      this.templatePath('_tsconfig.json'),
-      this.destinationPath('tsconfig.json')
-    );
+    this.fs.copy(this.templatePath('_mock.js'), this.destinationPath('.mock.js'));
 
-    this.fs.copyTpl(
-      this.templatePath('_README.md'),
-      this.destinationPath('README.md'),
-      {
-        name: this.props.name,
-        description: this.props.description,
-      }
-    );
+    this.fs.copy(this.templatePath('_publish.sh'), this.destinationPath('publish.sh'));
+
+    this.fs.copy(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'));
+
+    this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
+      name: this.props.name,
+      description: this.props.description
+    });
 
     // copy app src, dependent on language choice
     this.fs.copyTpl(
@@ -107,17 +101,16 @@ class GeneratorCool extends Generator {
       {
         name: this.props.name,
         description: this.props.description,
-        title: this.props.title,
+        title: this.props.title
       }
     );
   }
 
   install() {
     if (this.props.installDeps) {
-      this.npmInstall();
+      this.spawnCommandSync('tnpm', 'install');
     } else {
-      this
-        .log(`Skipping the install step. Run \`npm install\` inside the project root when
+      this.log(`Skipping the install step. Run \`tnpm install\` inside the project root when
         you're ready.`);
     }
   }

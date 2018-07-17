@@ -1,0 +1,13 @@
+$prefix: force-graph;
+.#{$prefix}- {
+  &container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    position: relative;
+  }
+  &node-overlay {
+    position: absolute;
+  }
+}

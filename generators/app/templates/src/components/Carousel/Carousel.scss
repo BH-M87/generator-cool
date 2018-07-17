@@ -1,0 +1,70 @@
+$prefix: carousel;
+$dotsSize: 10px;
+.#{$prefix}- {
+  &slider {
+    position: relative;
+  }
+  &dots {
+    display: flex !important;
+    justify-content: flex-end;
+    li {
+      display: block !important;
+      height: $dotsSize;
+      width: $dotsSize;
+      border-radius: $dotsSize;
+      margin-right: 10px !important;
+      &:last-child {
+        margin-right: 20px !important;
+      }
+      button {
+        margin: 2px;
+        background: #999 !important;
+        width: inherit !important;
+        height: inherit !important;
+        border-radius: inherit !important;
+      }
+    }
+    .slick-active {
+      button {
+        background: #00c1de !important;
+      }
+    }
+  }
+  &text {
+    position: absolute;
+    left: 17px;
+    bottom: 15px;
+    &-title {
+      font-size: 20px;
+      color: #fff;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.80);
+    }
+    &-detail {
+      display: flex;
+      color: #ccc;
+      font-size: 12px;
+      margin-top: 3px;
+      div {
+        margin-right: 30px;
+      }
+    }
+  }
+  &positive {
+    color: #17c295;
+  }
+  &neutral {
+    color: #ddd;
+  }
+  &negative {
+    color: #e00;
+  }
+  &high-risk {
+    color: #e00;
+  }
+  &risk {
+    color: #666;
+  }
+  &normal {
+    color: #17c295;
+  }
+}

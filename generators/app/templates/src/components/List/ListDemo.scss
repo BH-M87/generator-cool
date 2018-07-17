@@ -1,0 +1,57 @@
+$prefix: list-demo;
+@mixin font($color:#999999) {
+  font-family: MicrosoftYaHei;
+  font-size: 14px;
+  color: $color;
+}
+
+.#{$prefix}- {
+  &list {
+    background: #323b41;
+    border: 1px solid #353e45;
+    border-radius: 4px;
+  }
+  &title {
+    flex: 1;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0;
+  }
+  &source {
+    width: 100px;
+    @include font();
+  }
+  &pubTime {
+    width: 150px;
+    @include font();
+  }
+  &hazardIndex {
+    width: 100px;
+    @include font();
+  }
+  &heat {
+    width: 100px;
+    @include font();
+  }
+  &emotionIndex {
+    width: 180px;
+    @include font();
+  }
+  &action {
+    width: 80px;
+    @include font();
+  }
+  &follow {
+    color: #00c1de;
+  }
+  &followed {
+    color: #00a280;
+  }
+  &row:hover {
+    background: #2a3237;
+  }
+  &text {
+    @include font(#DDDDDD);
+  }
+}

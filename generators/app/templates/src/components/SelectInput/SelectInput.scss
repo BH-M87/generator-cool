@@ -1,0 +1,27 @@
+$prefix: select-input;
+.#{$prefix}- {
+  &container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  &label {
+    margin-right: 5px;
+    font-size: 12px;
+    color: #333333;
+    width: 180px;
+    text-align: right;
+  }
+  &select-input {
+    width: 100%;
+    border-radius: 1px;
+    .ant-select-selection,
+    .ant-input {
+      background: inherit;
+    }
+    .ant-calendar-picker-icon {
+      right: 8px !important;
+      top: 9px !important;
+    }
+  }
+}

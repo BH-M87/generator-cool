@@ -1,0 +1,11 @@
+$prefix: date-picker;
+.#{$prefix}- {
+  &container {
+    position: relative;
+  }
+  &range-picker {
+    width: 221px;
+    height: 26px;
+    border-radius: 2px;
+  }
+}

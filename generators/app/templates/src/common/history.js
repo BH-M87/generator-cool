@@ -1,4 +1,10 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createHashHistory } from 'history';
+
+export const isHashHistory = true; // true or false
 
 const browserHistory = createBrowserHistory();
-export default browserHistory;
+const hashHistory = createHashHistory();
+
+const history = isHashHistory ? hashHistory : browserHistory;
+
+export default history;

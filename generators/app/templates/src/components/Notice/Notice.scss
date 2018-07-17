@@ -1,0 +1,16 @@
+$prefix: notice;
+.#{$prefix}- {
+  &card {
+    position: relative;
+    .ant-popover-buttons {
+      display: flex;
+    }
+    .ant-btn {
+      width: 43.28px;
+      text-align: center;
+    }
+    .ant-btn-primary {
+      color: #fff;
+    }
+  }
+}

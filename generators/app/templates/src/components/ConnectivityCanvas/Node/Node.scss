@@ -1,0 +1,124 @@
+$prefix: node;
+$backgroundColor: #f3fbfd;
+$animationRange: -20px;
+.#{$prefix}- {
+  &container {
+    position: absolute;
+  }
+  &highlight {
+    border: 2px solid #09d0ee !important;
+  }
+  &icon-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $backgroundColor;
+    background-size: 100% 100%;
+    border: 2px solid transparent;
+    cursor: move;
+    &:hover {
+      border: 2px solid #09d0ee;
+      .#{$prefix}-picker {
+        display: flex;
+        animation: none !important;
+      }
+    }
+  }
+  &circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
+  &square {
+    width: 48px;
+    height: 48px;
+  }
+  &rhombus {
+    width: 68px;
+    height: 68px;
+    transform: rotate(45deg);
+  }
+  &text-wrap {
+    position: absolute;
+    bottom: -18px;
+    font-size: 12px;
+    color: #777777;
+    left: -100%;
+    right: -100%;
+    text-align: center;
+  }
+  &text {
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &start-node{
+    font-size: 32px !important;
+  }
+  &picker {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -6px;
+    width: 12px;
+    height: 12px;
+    padding: 2px;
+    display: none;
+    border: 1px solid #09d0ee;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    &:before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #09d0ee;
+    }
+  }
+  &top-picker {
+    top: -7px;
+  }
+  &bottom-picker {
+    bottom: -7px;
+  }
+  &hover-wrap {
+    position: absolute;
+    left: $animationRange;
+    top: $animationRange;
+    border-radius: 50%;
+  }
+  &hover-wrap:hover + &icon-wrap > &picker {
+    display: flex;
+    animation: twinkle 0.5s infinite;
+  }
+  &node-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &running {
+    background: #ffd004;
+  }
+  &success {
+    background: #73d133;
+  }
+  &fail {
+    background: #fc6f47;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
