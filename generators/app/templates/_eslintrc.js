@@ -29,5 +29,9 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 0,
     'no-mixed-operators': 0,
     'jsx-a11y/mouse-events-have-key-events': 0,
+    'import/no-unresolved': [
+      2,
+      { ignore: ['\\?global$', '\\?external$', '\\?inline$'] },
+    ],
   },
 };
