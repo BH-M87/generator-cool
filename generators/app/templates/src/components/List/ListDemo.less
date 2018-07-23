@@ -1,11 +1,11 @@
-$prefix: list-demo;
-@mixin font($color:#999999) {
+@prefix: list-demo;
+.font(@color:#999999) {
   font-family: MicrosoftYaHei;
   font-size: 14px;
-  color: $color;
+  color: @color;
 }
 
-.#{$prefix}- {
+.@{prefix}- {
   &list {
     background: #323b41;
     border: 1px solid #353e45;
@@ -20,27 +20,27 @@ $prefix: list-demo;
   }
   &source {
     width: 100px;
-    @include font();
+    .font();
   }
   &pubTime {
     width: 150px;
-    @include font();
+    .font();
   }
   &hazardIndex {
     width: 100px;
-    @include font();
+    .font();
   }
   &heat {
     width: 100px;
-    @include font();
+    .font();
   }
   &emotionIndex {
     width: 180px;
-    @include font();
+    .font();
   }
   &action {
     width: 80px;
-    @include font();
+    .font();
   }
   &follow {
     color: #00c1de;
@@ -52,6 +52,6 @@ $prefix: list-demo;
     background: #2a3237;
   }
   &text {
-    @include font(#DDDDDD);
+    .font(#DDDDDD);
   }
 }

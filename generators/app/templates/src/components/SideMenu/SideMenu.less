@@ -1,5 +1,5 @@
-$prefix: side-menu;
-.#{$prefix}- {
+@prefix: side-menu;
+.@{prefix}- {
   &button-wrap {
     height: 15px;
     border-bottom: 1px solid #ccc;
@@ -36,11 +36,11 @@ $prefix: side-menu;
     height: 100%;
     display: flex;
     flex-direction: column;
-    .#{$prefix}-search-wrap {
+    .@{prefix}-search-wrap {
       padding: 0 10px;
       background: #eceef1;
     }
-    .#{$prefix}-search {
+    .@{prefix}-search {
       width: 160px;
       margin: 10px 0 13px 0;
       .ant-input {
@@ -51,7 +51,7 @@ $prefix: side-menu;
         font-size: 12px;
       }
     }
-    .#{$prefix}-arrow-wrap {
+    .@{prefix}-arrow-wrap {
       position: absolute;
       left: -15px;
       width: 15px;
@@ -72,7 +72,7 @@ $prefix: side-menu;
     .ant-menu-light .ant-menu-submenu-title:hover {
       background: rgba(213, 247, 255, 0.6) !important;
     }
-    .#{$prefix}-title {
+    .@{prefix}-title {
       width: 100%;
       height: 32px;
       position: relative;
@@ -80,11 +80,11 @@ $prefix: side-menu;
     }
     .ant-menu-root > .ant-menu-submenu > .ant-menu-submenu-title {
       background: #eceef1;
-      .#{$prefix}-title {
+      .@{prefix}-title {
         margin-left: 13px;
       }
     }
-    .#{$prefix}-icon-exist {
+    .@{prefix}-icon-exist {
       margin-left: 0 !important;
       border-left: 3px solid transparent;
     }
@@ -96,7 +96,7 @@ $prefix: side-menu;
       background: rgba(213, 247, 255, 0.6) !important;
     }
     .ant-menu-light .ant-menu-item-selected,
-    .#{$prefix}-title-selected {
+    .@{prefix}-title-selected {
       color: #09d0ee !important;
     }
     .ant-menu-light .ant-menu-item-selected:after {
@@ -120,7 +120,7 @@ $prefix: side-menu;
     .ant-menu-submenu-arrow {
       left: 0 !important;
     }
-    .#{$prefix}-edit-item {
+    .@{prefix}-edit-item {
       width: 100%;
       position: absolute;
       left: 0;
@@ -137,13 +137,13 @@ $prefix: side-menu;
   &collapsed-container {
     width: 60px;
     min-width: 60px;
-    .#{$prefix}-search-wrap {
+    .@{prefix}-search-wrap {
       display: none;
     }
     .ant-menu-root
       > .ant-menu-submenu
       > .ant-menu-submenu-title
-      .#{$prefix}-title {
+      .@{prefix}-title {
       margin-left: 0;
       justify-content: center;
     }
@@ -157,10 +157,10 @@ $prefix: side-menu;
     }
   }
   &dark-container {
-    .#{$prefix}-search-wrap {
+    .@{prefix}-search-wrap {
       background: #353f46;
     }
-    .#{$prefix}-search {
+    .@{prefix}-search {
       .ant-input {
         color: rgba(255, 255, 255, 0.6);
         background: #353f46;
@@ -170,7 +170,7 @@ $prefix: side-menu;
         color: #fff;
       }
     }
-    .#{$prefix}-button-wrap {
+    .@{prefix}-button-wrap {
       background: #353f46;
       border-bottom: none;
     }
@@ -181,7 +181,7 @@ $prefix: side-menu;
     .ant-menu-root
       > .ant-menu-submenu
       > .ant-menu-submenu-title
-      .#{$prefix}-title {
+      .@{prefix}-title {
       margin-left: 0;
     }
     .ant-menu-dark .ant-menu-submenu-title {

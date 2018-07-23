@@ -1,18 +1,18 @@
-$prefix: quick-action;
-$size: 200px;
-.#{$prefix}- {
+@prefix: quick-action;
+@size: 200px;
+.@{prefix}- {
   &container {
     position: absolute;
-    width: $size+40px;
-    height: $size+40px;
+    width: @size+40px;
+    height: @size+40px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   &circle {
-    width: $size;
-    height: $size;
-    border-radius: $size/2;
+    width: @size;
+    height: @size;
+    border-radius: @size/2;
     background: rgba(255, 255, 255, 0.5);
     background-image: linear-gradient(
       -32deg,

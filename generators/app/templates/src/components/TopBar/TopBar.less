@@ -1,5 +1,5 @@
-$prefix: top-bar;
-@mixin flex-center() {
+@prefix: top-bar;
+.flex-center() {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,20 +13,20 @@ $prefix: top-bar;
   }
 }
 
-@mixin primary-button() {
+.primary-button() {
   width: 102px;
   color: #fff;
   font-size: 16px;
 }
 
-@mixin second-button($width: 70px) {
+.second-button(@width: 70px) {
   height: 100%;
-  width: $width;
+  width: @width;
   font-size: 14px;
   color: #fff;
 }
 
-.#{$prefix}- {
+.@{prefix}- {
   &container {
     height: 100%;
     a {
@@ -79,7 +79,7 @@ $prefix: top-bar;
     padding-left: 18px;
   }
   &main-button {
-    @include flex-center();
+    .flex-center();
     margin-left: 100px;
     // a {
     //   height: 100%;
@@ -100,8 +100,8 @@ $prefix: top-bar;
     transition: 0.3s;
   }
   &nav-item {
-    @include flex-center();
-    @include primary-button();
+    .flex-center();
+    .primary-button();
     cursor: pointer;
     height: 50px;
   }
@@ -141,8 +141,8 @@ $prefix: top-bar;
     line-height: 30px;
   }
   &setting-item {
-    @include flex-center();
-    @include second-button('auto');
+    .flex-center();
+    .second-button('auto');
     padding: 0 19px;
     cursor: pointer;
   }
@@ -156,13 +156,13 @@ $prefix: top-bar;
     height: 40px;
     margin-top: -5px;
     color: #fff;
-    .#{$prefix}-logout {
+    .@{prefix}-logout {
       text-align: center;
       height: 40px;
       line-height: 40px;
       width: 100%;
     }
-    .#{$prefix}-logout:hover {
+    .@{prefix}-logout:hover {
       background: #0f1215;
     }
   }

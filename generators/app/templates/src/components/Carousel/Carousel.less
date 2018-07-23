@@ -1,6 +1,6 @@
-$prefix: carousel;
-$dotsSize: 10px;
-.#{$prefix}- {
+@prefix: carousel;
+@dotsSize: 10px;
+.@{prefix}- {
   &slider {
     position: relative;
   }
@@ -9,9 +9,9 @@ $dotsSize: 10px;
     justify-content: flex-end;
     li {
       display: block !important;
-      height: $dotsSize;
-      width: $dotsSize;
-      border-radius: $dotsSize;
+      height: @dotsSize;
+      width: @dotsSize;
+      border-radius: @dotsSize;
       margin-right: 10px !important;
       &:last-child {
         margin-right: 20px !important;

@@ -1,16 +1,16 @@
-@mixin flex() {
+.flex() {
   display: flex;
   align-items: center;
 }
 
-$prefix: point-selector;
-.#{$prefix}- {
+@prefix: point-selector;
+.@{prefix}- {
   &container {
     height: 100%;
     width: 100%;
   }
   &header {
-    @include flex();
+    .flex();
     height: 32px;
     background: #eef4f7;
     &-text {
@@ -24,21 +24,21 @@ $prefix: point-selector;
     padding-bottom: 12px;
   }
   &footer {
-    @include flex();
+    .flex();
     justify-content: flex-end;
     padding: 12px 16px;
     border-top: 1px solid #dddddd;
   }
   &lonlat {
-    @include flex();
+    .flex();
     margin-top: 16px;
   }
   &radius {
-    @include flex();
+    .flex();
     margin-top: 16px;
   }
   &direction {
-    @include flex();
+    .flex();
     margin-top: 16px;
   }
   &label {

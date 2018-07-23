@@ -1,4 +1,4 @@
-$prefix: list;
+@prefix: list;
 a,
 a:link,
 a:visited,
@@ -9,21 +9,21 @@ a:active {
   outline: none;
 }
 
-@mixin font-family {
+.font-family {
   letter-spacing: 0;
 }
 
-@mixin font-title-style {
-  @include font-family;
+.font-title-style {
+  .font-family;
   font-size: 24px;
 }
 
-@mixin font-content-style {
-  @include font-family;
+.font-content-style {
+  .font-family;
   font-size: 12px;
 }
 
-.#{$prefix}- {
+.@{prefix}- {
   &list {
     width: 100%;
   }
@@ -55,7 +55,7 @@ a:active {
   }
   &row-hover:hover {
     height: auto;
-    // .#{$prefix}-detail {
+    // .@{prefix}-detail {
     //   display: flex;
     // }
   }
@@ -111,7 +111,7 @@ a:active {
     }
   }
   &total-num {
-    @include font-content-style();
+    .font-content-style();
     color: #4a4a4a;
     margin: 0 22px 0 20px;
   }

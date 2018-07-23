@@ -1,5 +1,5 @@
-$prefix: map-selector;
-.#{$prefix}- {
+@prefix: map-selector;
+.@{prefix}- {
   &modal-wrap {
     top: 0;
     z-index: 1050; // z-index in popover is 1030
@@ -11,7 +11,7 @@ $prefix: map-selector;
     top: 50px !important;
     position: absolute;
     .ant-modal-content {
-      height: calc(100% - 50px);
+      height: calc(~"100% - 50px");
       overflow: hidden;
     }
     .ant-modal-body {

@@ -1,7 +1,7 @@
-$prefix: node;
-$backgroundColor: #f3fbfd;
-$animationRange: -20px;
-.#{$prefix}- {
+@prefix: node;
+@backgroundColor: #f3fbfd;
+@animationRange: -20px;
+.@{prefix}- {
   &container {
     position: absolute;
   }
@@ -14,13 +14,13 @@ $animationRange: -20px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: $backgroundColor;
+    background-color: @backgroundColor;
     background-size: 100% 100%;
     border: 2px solid transparent;
     cursor: move;
     &:hover {
       border: 2px solid #09d0ee;
-      .#{$prefix}-picker {
+      .@{prefix}-picker {
         display: flex;
         animation: none !important;
       }
@@ -87,8 +87,8 @@ $animationRange: -20px;
   }
   &hover-wrap {
     position: absolute;
-    left: $animationRange;
-    top: $animationRange;
+    left: @animationRange;
+    top: @animationRange;
     border-radius: 50%;
   }
   &hover-wrap:hover + &icon-wrap > &picker {

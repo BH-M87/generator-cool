@@ -1,8 +1,8 @@
-$prefix: connectivity-canvas;
-$container-width: 10000px;
-$container-height: 10000px;
+@prefix: connectivity-canvas;
+@container-width: 10000px;
+@container-height: 10000px;
 
-.#{$prefix}- {
+.@{prefix}- {
   &container-wrap {
     position: relative;
     background-image: url('../../image/canvasBackground.png');
@@ -19,8 +19,8 @@ $container-height: 10000px;
   }
   &container {
     position: relative;
-    width: $container-width;
-    height: $container-height;
+    width: @container-width;
+    height: @container-height;
     .jtk-source-hover,
     .jtk-target-hover {
       .node-icon-wrap {

@@ -1,15 +1,15 @@
-$prefix: tips;
-@mixin show-ellipsis() {
+@prefix: tips;
+.show-ellipsis() {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.#{$prefix}- {
+.@{prefix}- {
   &container-wrap {
     position: relative;
   }
   &container {
     white-space: nowrap;
-    @include show-ellipsis();
+    .show-ellipsis();
   }
   &multiple {
     display: -webkit-box;
