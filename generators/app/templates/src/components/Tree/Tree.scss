@@ -1,0 +1,18 @@
+$prefix: tree;
+.#{$prefix}- {
+  &container {
+    user-select: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .ant-menu {
+      flex: 1;
+    }
+    .ant-input-affix-wrapper {
+      display: none;
+    }
+  }
+  &highlight-search-value {
+    color: #f50;
+  }
+}
