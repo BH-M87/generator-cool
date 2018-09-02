@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import utils from 'common/utils';
-import styles from './StatusLayer.scss';
+import styles from './StatusLayer.less';
 
 const PREFIX = 'status-layer';
 const cx = utils.classnames(PREFIX, styles);

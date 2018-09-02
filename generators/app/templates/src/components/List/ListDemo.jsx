@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import utils from 'common/utils';
 import List from '.';
-import styles from './ListDemo.scss';
+import styles from './ListDemo.less';
 
 const PREFIX = 'list-demo';
 const cx = utils.classnames(PREFIX, styles);

@@ -5,7 +5,7 @@ import { Popover } from 'antd';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import utils from 'common/utils';
-import styles from './Tips.scss';
+import styles from './Tips.less';
 
 const PREFIX = 'tips';
 const cx = utils.classnames(PREFIX, styles);

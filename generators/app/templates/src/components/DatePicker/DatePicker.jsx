@@ -5,7 +5,7 @@ import { observable, computed, action, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import utils from 'common/utils';
 import moment from 'moment';
-import styles from './DatePicker.scss';
+import styles from './DatePicker.less';
 
 const PREFIX = 'date-picker';
 const cx = utils.classnames(PREFIX, styles);

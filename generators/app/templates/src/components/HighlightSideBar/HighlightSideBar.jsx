@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import utils from 'common/utils';
-import styles from './HighlightSideBar.scss';
+import styles from './HighlightSideBar.less';
 
 const PREFIX = 'highlight-side-bar';
 const cx = utils.classnames(PREFIX, styles);

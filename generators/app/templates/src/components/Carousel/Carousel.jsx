@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Carousel as CarouselAntd } from 'antd';
 import utils from 'common/utils';
-import styles from './Carousel.scss';
+import styles from './Carousel.less';
 
 const PREFIX = 'carousel';
 const cx = utils.classnames(PREFIX, styles);

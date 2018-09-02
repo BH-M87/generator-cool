@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Breadcrumb as BreadcrumbAntd } from 'antd';
 import utils from 'common/utils';
-import styles from './Breadcrumb.scss';
+import styles from './Breadcrumb.less';
 
 const PREFIX = 'bread-crumb';
 const cx = utils.classnames(PREFIX, styles);

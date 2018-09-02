@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button as ButtonAntd } from 'antd';
 import utils from 'common/utils';
-import styles from './Button.scss';
+import styles from './Button.less';
 
 const PREFIX = 'button';
 const cx = utils.classnames(PREFIX, styles);

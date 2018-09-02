@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shapeSizeMapping from 'config/shapeSizeMapping';
 import utils from 'common/utils';
-import styles from './Node.scss';
+import styles from './Node.less';
 
 const PREFIX = 'node';
 const cx = utils.classnames(PREFIX, styles);

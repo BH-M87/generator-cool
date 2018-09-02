@@ -8,7 +8,7 @@ import _ from 'lodash';
 import * as d3 from 'd3';
 import utils from 'common/utils';
 import StatusLayer from 'components/StatusLayer';
-import styles from './ForceGraph.scss';
+import styles from './ForceGraph.less';
 
 const PREFIX = 'force-graph';
 const cx = utils.classnames(PREFIX, styles);

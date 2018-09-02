@@ -5,7 +5,7 @@ import { Pagination } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import utils from 'common/utils';
 import StatusLayer from 'components/StatusLayer';
-import styles from './List.scss';
+import styles from './List.less';
 
 const PREFIX = 'list';
 const cx = utils.classnames(PREFIX, styles);

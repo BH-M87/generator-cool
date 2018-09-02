@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import { Popconfirm, message } from 'antd';
 import http from 'common/http';
 import utils from 'common/utils';
-import styles from './Notice.scss';
+import styles from './Notice.less';
 
 const PREFIX = 'notice';
 const cx = utils.classnames(PREFIX, styles);

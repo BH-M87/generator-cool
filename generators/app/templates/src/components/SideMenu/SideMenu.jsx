@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import SearchInput from 'components/SearchInput';
 import _ from 'lodash';
 import utils from 'common/utils';
-import styles from './SideMenu.scss';
+import styles from './SideMenu.less';
 
 const PREFIX = 'side-menu';
 const cx = utils.classnames(PREFIX, styles);

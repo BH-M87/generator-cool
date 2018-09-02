@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Icon } from 'antd';
 import utils from 'common/utils';
-import styles from './SearchInput.scss';
+import styles from './SearchInput.less';
 
 const PREFIX = 'search-input';
 const cx = utils.classnames(PREFIX, styles);

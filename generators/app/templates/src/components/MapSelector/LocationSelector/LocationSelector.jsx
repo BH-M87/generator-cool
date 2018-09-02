@@ -5,7 +5,7 @@ import { Button, Cascader } from 'antd';
 import utils from 'common/utils';
 import territoryOptions from 'config/territoryOptions';
 import { ADMIN_AREA, CIRCLE_AREA, NONE_AREA, BOTH_AREA } from '../config';
-import styles from './LocationSelector.scss';
+import styles from './LocationSelector.less';
 
 const PREFIX = 'location-selector';
 const cx = utils.classnames(PREFIX, styles);

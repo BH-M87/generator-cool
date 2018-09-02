@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar as AvatarAntd } from 'antd';
 import utils from 'common/utils';
-import styles from './Avatar.scss';
+import styles from './Avatar.less';
 
 const PREFIX = 'avatar';
 const cx = utils.classnames(PREFIX, styles);

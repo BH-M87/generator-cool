@@ -20,7 +20,7 @@ import {
 } from './config';
 import LocationSelector from './LocationSelector';
 import PointSelector from './PointSelector';
-import styles from './MapSelector.scss';
+import styles from './MapSelector.less';
 
 const PREFIX = 'map-selector';
 const cx = utils.classnames(PREFIX, styles);

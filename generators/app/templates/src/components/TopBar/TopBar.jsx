@@ -10,7 +10,7 @@ import history from 'common/history';
 import { observer } from 'mobx-react';
 import http from 'common/http';
 import routeConfig from 'config/routeConfig';
-import styles from './TopBar.scss';
+import styles from './TopBar.less';
 
 const PREFIX = 'top-bar';
 const cx = utils.classnames(PREFIX, styles);

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import utils from 'common/utils';
-import styles from './Map.scss';
+import styles from './Map.less';
 
 const PREFIX = 'map';
 const cx = utils.classnames(PREFIX, styles);

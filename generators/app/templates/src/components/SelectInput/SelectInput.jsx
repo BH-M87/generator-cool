@@ -5,7 +5,7 @@ import { observer } from 'mobx-react';
 import { Select, Input, DatePicker, Cascader } from 'antd';
 import http from 'common/http';
 import utils from 'common/utils';
-import styles from './SelectInput.scss';
+import styles from './SelectInput.less';
 
 const PREFIX = 'select-input';
 const cx = utils.classnames(PREFIX, styles);

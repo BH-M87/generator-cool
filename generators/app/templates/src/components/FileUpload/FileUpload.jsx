@@ -9,7 +9,7 @@ import utils from 'common/utils';
 import http from 'common/http';
 import { Upload } from 'antd';
 import Button from 'components/Button';
-import styles from './FileUpload.scss';
+import styles from './FileUpload.less';
 
 const PREFIX = 'file-upload';
 const cx = utils.classnames(PREFIX, styles);

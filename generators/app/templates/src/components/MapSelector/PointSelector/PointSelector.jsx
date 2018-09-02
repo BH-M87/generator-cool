@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import { Input, Radio, Button } from 'antd';
 import utils from 'common/utils';
 import { ADMIN_AREA, CIRCLE_AREA, NONE_AREA, CIRCLE_INNER, CIRCLE_OUTER } from '../config';
-import styles from './PointSelector.scss';
+import styles from './PointSelector.less';
 
 const PREFIX = 'point-selector';
 const cx = utils.classnames(PREFIX, styles);

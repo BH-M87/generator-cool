@@ -4,7 +4,7 @@ import { Tree as TreeAntd } from 'antd';
 import { observable, action, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import utils from 'common/utils';
-import styles from './Tree.scss';
+import styles from './Tree.less';
 
 const PREFIX = 'tree';
 const cx = utils.classnames(PREFIX, styles);

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import uuid from 'uuid/v4';
-import styles from './ConnectivityCanvas.scss';
+import styles from './ConnectivityCanvas.less';
 import Node from './Node';
 import QuickAction from './QuickAction';
 import Slider from './Slider';

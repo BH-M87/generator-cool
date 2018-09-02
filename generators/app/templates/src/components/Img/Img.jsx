@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImgReact from 'react-image';
 import VisibilitySensor from 'react-visibility-sensor';
 import utils from 'common/utils';
-import styles from './Img.scss';
+import styles from './Img.less';
 
 const PREFIX = 'img';
 const cx = utils.classnames(PREFIX, styles);

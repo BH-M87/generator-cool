@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'common/PropTypes';
 import { Slider as SliderAntd } from 'antd';
 import utils from 'common/utils';
-import styles from './Slider.scss';
+import styles from './Slider.less';
 
 const PREFIX = 'slider';
 const cx = utils.classnames(PREFIX, styles);

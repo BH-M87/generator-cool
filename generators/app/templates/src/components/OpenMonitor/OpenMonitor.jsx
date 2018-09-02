@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import utils from 'common/utils';
 import DatePicker from 'components/DatePicker';
-import styles from './OpenMonitor.scss';
+import styles from './OpenMonitor.less';
 
 const PREFIX = 'open-monitor';
 const cx = utils.classnames(PREFIX, styles);

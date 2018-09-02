@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import utils from 'common/utils';
-import styles from './QuickAction.scss';
+import styles from './QuickAction.less';
 
 const PREFIX = 'quick-action';
 const cx = utils.classnames(PREFIX, styles);
