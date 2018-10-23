@@ -84,14 +84,19 @@ class GeneratorCool extends Generator {
 
     this.fs.copy(this.templatePath('_mock.js'), this.destinationPath('.mock.js'));
 
-    this.fs.copy(this.templatePath('_publish.sh'), this.destinationPath('publish.sh'));
-
     this.fs.copy(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'));
 
     this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
       name: this.props.name,
       description: this.props.description
     });
+
+    // copy shell
+    this.fs.copy(this.templatePath('_publish.sh'), this.destinationPath('publish.sh'));
+    this.fs.copy(
+      this.templatePath('_installExtension.sh'),
+      this.destinationPath('installExtension.sh')
+    );
 
     // copy app src, dependent on language choice
     this.fs.copyTpl(
@@ -104,13 +109,16 @@ class GeneratorCool extends Generator {
         title: this.props.title
       }
     );
+
+    // .vscode config
+    this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
   }
 
   install() {
     if (this.props.installDeps) {
       this.spawnCommandSync('tnpm', 'install');
     } else {
-      this.log(`Skipping the install step. Run \`tnpm install\` inside the project root when
+      this.log(`Skipping the install step. Run \`npm install\` inside the project root when
         you're ready.`);
     }
   }

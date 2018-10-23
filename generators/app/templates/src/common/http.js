@@ -1,6 +1,7 @@
 /* global location */
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
+import URLSearchParams from 'url-search-params';
 import utils from 'common/utils';
 import routeConfig from 'config/routeConfig';
 
@@ -13,10 +14,14 @@ export class Http {
       timeout: 11 * 60 * 10000,
       getToken: response => response.token,
     },
-    errorHook: error => {
+    errorHook: (error, url) => {
+      console.error(`${error}, from: ${url}`);
       throw error;
     },
     notLoginInErrorCode: 1029,
+    notLoginInUrl: routeConfig.login.path,
+    parseResult: data => data && data.data,
+    isGetParamJsonStringfy: true,
   };
 
   checkStatus(response) {
@@ -29,10 +34,15 @@ export class Http {
     throw error;
   }
 
-  notLoginIn() {
+  notLoginIn(loginPageUrl) {
     /* eslint no-restricted-globals:0 */
-    // history.push({ pathname: routeConfig.login, search: `?redirectUrl=${location.pathname}` });
-    navTo({ pathname: routeConfig.login });
+    // history.push({ pathname: routeConfig.login.path, search: `?redirectUrl=${location.pathname}` });
+    const urlReg = /^https?:\/\/*/;
+    if (loginPageUrl && urlReg.exec(loginPageUrl)) {
+      window.location.href = loginPageUrl;
+    } else if (this.defaultConfig.notLoginInUrl) {
+      navTo({ pathname: this.defaultConfig.notLoginInUrl });
+    }
   }
 
   checkErrCode(dataObj) {
@@ -41,7 +51,7 @@ export class Http {
       return;
     }
     if (errCode === this.defaultConfig.notLoginInErrorCode) {
-      this.notLoginIn();
+      this.notLoginIn(errMsg);
     }
 
     const error = new Error(errMsg);
@@ -52,7 +62,9 @@ export class Http {
 
   parseResult(data) {
     this.checkErrCode(data);
-    return data && data.data;
+    return this.defaultConfig.parseResult
+      ? this.defaultConfig.parseResult(data)
+      : data;
   }
 
   async parseJSON(response) {
@@ -60,9 +72,9 @@ export class Http {
   }
 
   async processResult(response) {
-    let returnResponse = this.checkStatus(response);
-    returnResponse = await this.parseJSON(returnResponse);
-    return this.parseResult(returnResponse);
+    this.checkStatus(response);
+    const returnResponse = await this.parseJSON(response);
+    return this.parseResult(returnResponse, response.url);
   }
 
   async request(url, init, headers = {}, config = { throwError: false }) {
@@ -84,7 +96,7 @@ export class Http {
       response = await this.processResult(response);
       return response;
     } catch (error) {
-      this.defaultConfig.errorHook(error);
+      this.defaultConfig.errorHook(error, url);
       if (config.throwError) throw error;
       return null;
     }
@@ -105,6 +117,9 @@ export class Http {
 
   token = null;
   async getCsrfToken() {
+    if (!this.defaultConfig.csrf) {
+      return undefined;
+    }
     if (window.ajaxHeader && window.ajaxHeader['x-csrf-token']) {
       this.token = window.ajaxHeader['x-csrf-token'];
       return this.token;
@@ -127,8 +142,20 @@ export class Http {
   }
 
   async get(api, data = {}, headers = {}, config = {}) {
-    const query = _.isEmpty(data) ? '' : `json=${encodeURIComponent(JSON.stringify(data))}`;
-    return this.request(`${api}?${query}`, {}, headers, config);
+    let query;
+    if (_.isEmpty(data)) {
+      query = '';
+    } else if (this.defaultConfig.isGetParamJsonStringfy) {
+      query = `?json=${encodeURIComponent(JSON.stringify(data))}`;
+    } else {
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams
+      const searchParams = new URLSearchParams();
+      _.keys(data).forEach(key => {
+        searchParams.append(key, data[key]);
+      });
+      query = `?${searchParams.toString()}`;
+    }
+    return this.request(`${api}${query}`, {}, headers, config);
   }
 
   async post(api, data = {}, customeHeaders = {}, config = {}) {
@@ -145,6 +172,24 @@ export class Http {
         method: 'POST',
         headers,
         body: formBody,
+      },
+      {},
+      config,
+    );
+  }
+
+  async submitForm(api, formData, customeHeaders = {}, config = {}) {
+    const token = await this.getCsrfToken();
+    const headers = {
+      'X-CSRF-TOKEN': token,
+      ...customeHeaders,
+    };
+    return this.request(
+      api,
+      {
+        method: 'POST',
+        headers,
+        body: formData,
       },
       {},
       config,
