@@ -54,7 +54,7 @@ class TopBar extends Component {
   renderNav() {
     return (
       <div className={cx('model')}>
-        <Link to={routeConfig.home}>
+        <Link to={routeConfig.home.path}>
           <div className={cx('logo')}>
             <img src={''} alt="" />
             <span className={cx('logo-text')}>&nbsp;&nbsp;名称</span>
@@ -69,36 +69,36 @@ class TopBar extends Component {
         </div>
         <div className={cx('main-button')}>
           <NavLink
-            to={routeConfig.home}
+            to={routeConfig.home.path}
             activeClassName={cx('selected')}
           >
             <div className={cx('nav-item')}>目录1</div>
           </NavLink>
           <NavLink
-            to={routeConfig.home}
+            to={routeConfig.home.path}
             activeClassName={cx('selected')}
           >
             <div className={cx('nav-item')}>目录2</div>
           </NavLink>
-          <NavLink to={routeConfig.home} activeClassName={cx('selected')}>
+          <NavLink to={routeConfig.home.path} activeClassName={cx('selected')}>
             <div className={cx('nav-item')}>目录3</div>
           </NavLink>
           <NavLink
-            to={routeConfig.home}
+            to={routeConfig.home.path}
             activeClassName={cx('selected')}
           >
             <div className={cx('nav-item')}>目录4</div>
           </NavLink>
           <Link
-            to={routeConfig.home}
+            to={routeConfig.home.path}
             className={cx({
-              selected: history.location.pathname.startsWith(routeConfig.home),
+              selected: history.location.pathname.startsWith(routeConfig.home.path),
             })}
           >
             <div className={cx('nav-item')}>目录5</div>
           </Link>
           <NavLink
-            to={routeConfig.home}
+            to={routeConfig.home.path}
             activeClassName={cx('selected')}
           >
             <div className={cx('nav-item')}>目录6</div>

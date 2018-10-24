@@ -8,10 +8,10 @@ export default function RouterConfig() {
   return (
     <Router history={history}>
       <Switch>
-        <Route path={routeConfig.home} exact>
+        <Route path={routeConfig.home.path} exact>
           <TopBar />
         </Route>
-        <Route path={routeConfig.testPage} exact>
+        <Route path={routeConfig.testPage.path} exact>
           <TopBar />
         </Route>
         <Redirect to={routeConfig.home} />

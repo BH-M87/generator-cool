@@ -10,12 +10,12 @@
     "build": "cool-cli build",
     "precommit": "lint-staged",
     "start": "cool-cli start",
-    "publish": "./publish.sh",
+    "publish": "./publish.sh"
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix",
       "prettier --write",
+      "eslint --fix",
       "git add"
     ],
     "*.{css,sass,scss,less,json}": [

@@ -1,4 +1,4 @@
 export default {
-  home: '/home',
-  testPage: '/testPage',
+  home: { path: '/home', role: ['common'] },
+  testPage: { path: '/testPage', role: ['common'] },
 };
