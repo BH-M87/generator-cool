@@ -29,9 +29,14 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 0,
     'no-mixed-operators': 0,
     'jsx-a11y/mouse-events-have-key-events': 0,
+    'react/react-in-jsx-scope': 0,
+    'react/sort-comp': 0,
+    'max-len': 0,
     'import/no-unresolved': [
       2,
       { ignore: ['\\?global$', '\\?external$', '\\?inline$'] },
     ],
+    'no-restricted-globals': 0,
+    'no-empty': ['error', { allowEmptyCatch: true }],
   },
 };

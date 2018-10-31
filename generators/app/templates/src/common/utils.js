@@ -1,26 +1,28 @@
 import _ from 'lodash';
 import classnames from 'classnames';
-import history, { isHashHistory } from 'common/history';
+import history from 'common/history';
 
 export default {
   classnames: (prefix, styles) => {
     const cx = classnames.bind(styles);
     return (...names) =>
-      cx(_.map(names, name => {
-        if (typeof name === 'string') {
-          return `${prefix}-${name}`;
-        } else if (typeof name === 'object') {
-          const returnObj = {};
-          for (const key in name) {
-            if (Object.prototype.hasOwnProperty.call(name, key)) {
-              const element = name[key];
-              returnObj[`${prefix}-${key}`] = element;
+      cx(
+        _.map(names, name => {
+          if (typeof name === 'string') {
+            return `${prefix}-${name}`;
+          } else if (typeof name === 'object') {
+            const returnObj = {};
+            for (const key in name) {
+              if (Object.prototype.hasOwnProperty.call(name, key)) {
+                const element = name[key];
+                returnObj[`${prefix}-${key}`] = element;
+              }
             }
+            return returnObj;
           }
-          return returnObj;
-        }
-        return '';
-      }));
+          return '';
+        })
+      );
   },
   number: {
     localize(num, precision = 2) {
@@ -135,5 +137,25 @@ export default {
     };
     findLastValue(cascaderOptions || []);
     return findedCascaderValue;
+  },
+  findPath: (tree, id) => {
+    const path = [];
+    const findItem = (lTree, lId) => {
+      for (const item of lTree) {
+        if (item.id === lId) {
+          path.push(item.id);
+          return true;
+        } else if (item.children) {
+          path.push(item.id);
+          if (findItem(item.children, lId)) {
+            return true;
+          }
+          path.pop();
+        }
+      }
+      return false;
+    };
+    findItem(tree, id);
+    return path;
   },
 };
