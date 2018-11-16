@@ -2,7 +2,7 @@ const TARGET = 'http://remoteHost:7001';
 
 module.exports = {
   devServer: {
-    port: '8001',
+    port: 8000,
     proxy: {
       // Rules refer to https://www.npmjs.com/package/glob
       // /sockjs-node/** is used for webpack hot reload, do not proxy it

@@ -4,6 +4,24 @@ class GeneratorCool extends Generator {
   prompting() {
     return this.prompt([
       {
+        type: 'list',
+        name: 'stateContainerType',
+        message: 'Which state container would you like to use?',
+        default: 'dva',
+        choices: [
+          {
+            name: 'dva',
+            value: 'dva',
+            short: 'dva'
+          },
+          {
+            name: 'mobx',
+            value: 'mobx',
+            short: 'mobx'
+          }
+        ]
+      },
+      {
         type: 'input',
         name: 'name',
         message: 'Your project name',
@@ -23,34 +41,6 @@ class GeneratorCool extends Generator {
         default: 'Cool project!!!'
       },
       {
-        type: 'list',
-        name: 'license',
-        message: 'Which license would you like to use?',
-        default: 'No License',
-        choices: [
-          {
-            name: 'No License',
-            value: '',
-            short: 'None'
-          },
-          {
-            name: 'MIT',
-            value: 'MIT',
-            short: 'MIT'
-          },
-          {
-            name: 'GPL-3.0',
-            value: 'GPL-3.0',
-            short: 'GPL-3.0'
-          },
-          {
-            name: 'Apache-2.0',
-            value: 'Apache-2.0',
-            short: 'Apache-2.0'
-          }
-        ]
-      },
-      {
         type: 'confirm',
         name: 'installDeps',
         message: 'Would you like to install all dependencies now?',
@@ -63,12 +53,15 @@ class GeneratorCool extends Generator {
 
   writing() {
     this.log('writing');
-    // Package.json
-    this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), {
-      name: this.props.name,
-      description: this.props.description,
-      license: this.props.license
-    });
+    // copy package.json, dependent on state container choice
+    this.fs.copyTpl(
+      this.templatePath(`_package_${this.props.stateContainerType}.json`),
+      this.destinationPath('package.json'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
+    );
 
     // .gitignore
     this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
@@ -98,10 +91,9 @@ class GeneratorCool extends Generator {
       this.destinationPath('installExtension.sh')
     );
 
-    // copy app src, dependent on language choice
+    // copy app src, dependent on state container choice
     this.fs.copyTpl(
-      // this.templatePath(`src_${this.props.language === 'es2015' ? 'es2015' : 'ts'}`),
-      this.templatePath('src'),
+      this.templatePath(`src_${this.props.stateContainerType}`),
       this.destinationPath('src'),
       {
         name: this.props.name,
@@ -116,9 +108,10 @@ class GeneratorCool extends Generator {
 
   install() {
     if (this.props.installDeps) {
-      this.spawnCommandSync('tnpm', 'install');
+      this.npmInstall();
     } else {
-      this.log(`Skipping the install step. Run \`npm install\` inside the project root when
+      this
+        .log(`Skipping the install step. Run \`npm(cnpm or tnpm) install\` inside the project root when
         you're ready.`);
     }
   }
