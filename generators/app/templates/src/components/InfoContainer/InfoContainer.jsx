@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import utils from 'common/utils';
 import Button from 'components/Button';
-import styles from './InfoContainer.scss';
+import styles from './InfoContainer.less';
 
 const PREFIX = 'info-container';
 const cx = utils.classnames(PREFIX, styles);
@@ -22,9 +22,7 @@ class InfoContainer extends Component {
     children: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string,
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-      ),
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, PropTypes.string])),
     ]),
   };
 
