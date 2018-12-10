@@ -3,7 +3,6 @@ import _ from 'lodash';
 import utils from 'common/utils';
 import history from 'common/history';
 import routeConfig from 'config/routeConfig';
-import { userInfo } from 'store/userInfo';
 
 export default Comp =>
   class CheckAuth extends Component {
@@ -15,9 +14,8 @@ export default Comp =>
         utils.navTo('/');
       }
       const { role = [] } = routeItem;
-      const { admin } = userInfo;
 
-      if (!admin && role.indexOf('common') === -1) {
+      if (role.indexOf('common') === -1) {
         utils.navTo('/');
       }
     }

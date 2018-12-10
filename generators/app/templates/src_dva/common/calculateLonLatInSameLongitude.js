@@ -10,11 +10,15 @@ function squared(x) {
 }
 
 function toAngle(radian) {
-  return radian * 180 / PI; /* eslint no-mixed-operators:0 */
+  return (radian * 180) / PI; /* eslint no-mixed-operators:0 */
 }
 
 // fomular refers to https://en.wikipedia.org/wiki/Haversine_formula
-module.exports = function calculateLonLatInSameLongitude(longitude, latitude, distance) {
+module.exports = function calculateLonLatInSameLongitude(
+  longitude,
+  latitude,
+  distance,
+) {
   const x = tan(distance / R / 2);
   const y = squared(x) / (1 + squared(x));
   const z = asin(sqrt(y)) * 2;

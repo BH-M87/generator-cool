@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export default {
   namespace: 'example',
 
@@ -10,7 +11,7 @@ export default {
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {
+    * fetch({ payload }, { call, put }) {
       // eslint-disable-line
       yield put({ type: 'save' });
     },

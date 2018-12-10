@@ -35,7 +35,9 @@ const stringToDomElement = html => {
       // );
       const body = document.createElement('body');
       // keeping the attributes
-      element.innerHTML = html.replace(/<body/g, '<div').replace(/<\/body>/g, '</div>');
+      element.innerHTML = html
+        .replace(/<body/g, '<div')
+        .replace(/<\/body>/g, '</div>');
       const attrs = element.firstChild.attributes;
       body.innerHTML = html;
       for (let i = 0; i < attrs.length; i++) {
