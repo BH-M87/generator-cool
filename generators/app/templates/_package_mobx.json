@@ -9,7 +9,10 @@
     "build": "cool-cli build",
     "precommit": "lint-staged",
     "start": "cool-cli start",
-    "publish": "./publish.sh"
+    "publish:predaily": "tnpm i -g @ali/def-pub-client",
+    "publish:daily": "dps -d",
+    "publish:java": "./publish.sh",
+    "build:localify": "npm run build && onebox-localify --scan-path ./build --backend-path /"
   },
   "lint-staged": {
     "*.{js,jsx}": [
