@@ -109,7 +109,7 @@ class GeneratorCool extends Generator {
     // .assetsmetafile
     this.fs.copy(this.templatePath('_assetsmetafile'), this.destinationPath('.assetsmetafile'));
     // abc.json
-    this.fs.copy(this.templatePath('abc.json'), this.destinationPath('abc.json'));
+    this.fs.copy(this.templatePath('_abc.json'), this.destinationPath('abc.json'));
   }
 
   install() {
