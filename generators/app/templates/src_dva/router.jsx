@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'dva/router';
 import routeConfig from 'config/routeConfig';
 import IndexPage from 'routes/IndexPage';
+import DetailPage from 'routes/DetailPage';
 
 function RouterConfig({ history }) {
   return (
@@ -10,6 +11,9 @@ function RouterConfig({ history }) {
       <Switch>
         <Route path={routeConfig.home.path} exact>
           <IndexPage />
+        </Route>
+        <Route path={routeConfig.detail.path} exact>
+          <DetailPage />
         </Route>
       </Switch>
     </Router>

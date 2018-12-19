@@ -1,14 +1,20 @@
 import dva from 'dva';
+import models from 'models';
+import history from 'common/history';
 import 'styles/index.less';
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+  history,
+});
 
 // 2. Plugins
 // app.use({});
 
 // 3. Model
-// app.model(require('./models/example').default);
+models.forEach(m => {
+  app.model(m);
+});
 
 // 4. Router
 app.router(require('./router').default);

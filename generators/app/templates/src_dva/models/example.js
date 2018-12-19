@@ -2,7 +2,7 @@
 export default {
   namespace: 'example',
 
-  state: {},
+  state: { text: 'Welcome example!!!' },
 
   subscriptions: {
     setup({ dispatch, history }) {

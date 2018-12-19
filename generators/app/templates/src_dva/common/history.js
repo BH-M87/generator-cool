@@ -1,10 +1,6 @@
 import { createBrowserHistory, createHashHistory } from 'history';
+import { isHashHistory } from 'config/config';
 
-export const isHashHistory = true; // true or false
-
-const browserHistory = createBrowserHistory();
-const hashHistory = createHashHistory();
-
-const history = isHashHistory ? hashHistory : browserHistory;
+const history = isHashHistory ? createHashHistory() : createBrowserHistory();
 
 export default history;
