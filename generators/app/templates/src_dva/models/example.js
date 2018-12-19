@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import APIFunction from 'services';
+
 export default {
   namespace: 'example',
 
@@ -12,8 +14,8 @@ export default {
 
   effects: {
     * fetch({ payload }, { call, put }) {
-      // eslint-disable-line
-      yield put({ type: 'save' });
+      const response = yield call(APIFunction.get);
+      yield put({ type: 'save', payload: response });
     },
   },
 
