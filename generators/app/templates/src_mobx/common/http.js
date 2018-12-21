@@ -2,13 +2,16 @@
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 import URLSearchParams from 'url-search-params';
+import { message } from 'antd';
 import utils from 'common/utils';
+import history from 'common/history';
 import routeConfig from 'config/routeConfig';
 
 const { navTo } = utils;
 
 export class Http {
   defaultConfig = {
+    dailyHostname: 'g-assets.daily.taobao.net',
     csrf: {
       api: '/csrf/getCsrfToken',
       timeout: 11 * 60 * 10000,
@@ -40,8 +43,18 @@ export class Http {
     const urlReg = /^https?:\/\/*/;
     if (loginPageUrl && urlReg.exec(loginPageUrl)) {
       window.location.href = loginPageUrl;
-    } else if (this.defaultConfig.notLoginInUrl) {
-      navTo({ pathname: this.defaultConfig.notLoginInUrl });
+    } else if (
+      this.defaultConfig.notLoginInUrl &&
+      history.location.pathname !== this.defaultConfig.notLoginInUrl
+    ) {
+      navTo({
+        pathname: this.defaultConfig.notLoginInUrl,
+        search: `?redirectUrl=${history.location.pathname}${
+          history.location.search.substr(1)
+            ? `&${history.location.search.substr(1)}`
+            : ''
+        }`,
+      });
     }
   }
 
@@ -52,6 +65,7 @@ export class Http {
     }
     if (errCode === this.defaultConfig.notLoginInErrorCode) {
       this.notLoginIn(errMsg);
+      return;
     }
 
     const error = new Error(errMsg);
@@ -77,27 +91,60 @@ export class Http {
     return this.parseResult(returnResponse, response.url);
   }
 
-  async request(url, init, headers = {}, config = { throwError: false }) {
+  async request(url, init, headers = {}, config = {}) {
+    // const fetchUrl =
+    //   window.location.hostname === this.defaultConfig.dailyHostname
+    //     ? `${serviceConfig.serviceHost}${url.startsWith('/') ? url : `/${url}`}`
+    //     : url;
+    // loadingState could be false or ture or the message displaying when loading
+    const defaultRequestConfig = {
+      throwError: false,
+      loadingState: false,
+      loadingStateMessage: undefined,
+    };
+    const cfg = Object.assign(defaultRequestConfig, config);
+    const options = _.assign(
+      {
+        credentials: 'include',
+      },
+      init,
+    );
+    options.headers = Object.assign(
+      {
+        'x-requested-with': 'XMLHttpRequest',
+      },
+      options.headers || {},
+      headers || {},
+    );
+    let messageTimeout = null;
+    let messageHide;
+    if (cfg.loadingState) {
+      messageTimeout = setTimeout(() => {
+        messageHide = message.loading(
+          cfg.loadingState === true
+            ? cfg.loadingStateMessage || '请求中，请稍等...'
+            : cfg.loadingState,
+          0,
+        );
+      }, 300);
+    }
+    const hideMessage = () => {
+      if (cfg.loadingState) {
+        clearTimeout(messageTimeout);
+        if (messageHide) {
+          messageHide();
+        }
+      }
+    };
     try {
-      const options = _.assign(
-        {
-          credentials: 'include',
-        },
-        init,
-      );
-      options.headers = Object.assign(
-        {
-          'x-requested-with': 'XMLHttpRequest',
-        },
-        options.headers || {},
-        headers || {},
-      );
       let response = await fetch(url, options);
       response = await this.processResult(response);
+      hideMessage();
       return response;
     } catch (error) {
+      hideMessage();
       this.defaultConfig.errorHook(error, url);
-      if (config.throwError) throw error;
+      if (cfg.throwError) throw error;
       return null;
     }
   }
@@ -141,7 +188,31 @@ export class Http {
     return this.token;
   }
 
-  async get(api, data = {}, headers = {}, config = {}) {
+  replaceRESTfulPlaceholder = (api, data = {}) => {
+    const regex = /:\w+/g;
+    const placeholders = api.match(regex);
+    if (!placeholders) {
+      return { api, data };
+    }
+    let newApi = api;
+    const newData = data;
+    placeholders.forEach(placeholder => {
+      const key = placeholder.substr(1);
+      if (newData[key]) {
+        newApi = newApi.replace(placeholder, newData[key]);
+        delete newData[key];
+      } else {
+        console.error(`missing '${placeholder}' data in api!`);
+      }
+    });
+    return {
+      api: newApi,
+      data: newData,
+    };
+  };
+
+  async get(getApi, getData = {}, headers = {}, config = {}) {
+    const { api, data } = this.replaceRESTfulPlaceholder(getApi, getData);
     let query;
     if (_.isEmpty(data)) {
       query = '';
@@ -157,8 +228,8 @@ export class Http {
     }
     return this.request(`${api}${query}`, {}, headers, config);
   }
-
-  async post(api, data = {}, customeHeaders = {}, config = {}) {
+  async post(postApi, postData = {}, customeHeaders = {}, config = {}) {
+    const { api, data } = this.replaceRESTfulPlaceholder(postApi, postData);
     const token = await this.getCsrfToken();
     const headers = {
       'Content-Type': 'application/json',
@@ -174,11 +245,11 @@ export class Http {
         body: formBody,
       },
       {},
-      config,
+      Object.assign({ loadingState: true }, config),
     );
   }
-
-  async submitForm(api, formData, customeHeaders = {}, config = {}) {
+  async form(formApi, formData, customeHeaders = {}, config = {}) {
+    const { api, data } = this.replaceRESTfulPlaceholder(formApi, formData);
     const token = await this.getCsrfToken();
     const headers = {
       'X-CSRF-TOKEN': token,
@@ -189,7 +260,7 @@ export class Http {
       {
         method: 'POST',
         headers,
-        body: formData,
+        body: data,
       },
       {},
       config,
