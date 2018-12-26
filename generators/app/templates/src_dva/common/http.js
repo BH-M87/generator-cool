@@ -5,6 +5,7 @@ import URLSearchParams from 'url-search-params';
 import { message } from 'antd';
 import utils from 'common/utils';
 import history from 'common/history';
+import replacePlaceholder from 'common/replacePlaceholder';
 import routeConfig from 'config/routeConfig';
 
 const { navTo } = utils;
@@ -189,25 +190,10 @@ export class Http {
   }
 
   replaceRESTfulPlaceholder = (api, data = {}) => {
-    const regex = /:\w+/g;
-    const placeholders = api.match(regex);
-    if (!placeholders) {
-      return { api, data };
-    }
-    let newApi = api;
-    const newData = data;
-    placeholders.forEach(placeholder => {
-      const key = placeholder.substr(1);
-      if (newData[key]) {
-        newApi = newApi.replace(placeholder, newData[key]);
-        delete newData[key];
-      } else {
-        console.error(`missing '${placeholder}' data in api!`);
-      }
-    });
+    const result = replacePlaceholder(api, /:\w+/g, data);
     return {
-      api: newApi,
-      data: newData,
+      api: result.string,
+      data: result.data,
     };
   };
 
@@ -248,7 +234,6 @@ export class Http {
       Object.assign({ loadingState: true }, config),
     );
   }
-
   async form(formApi, formData, customeHeaders = {}, config = {}) {
     const { api, data } = this.replaceRESTfulPlaceholder(formApi, formData);
     const token = await this.getCsrfToken();
