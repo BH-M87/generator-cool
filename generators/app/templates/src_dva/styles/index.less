@@ -1,5 +1,25 @@
-html,
-body,
-:global(#root) {
-  height: 100%;
+@import '~antd/dist/antd.less'; // 引入antd官方提供的 less 样式入口文件
+@import './antd-theme-file.less'; // 用于覆盖上面定义的变量
+
+:global {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+  a,
+  a:active,
+  a:focus,
+  :focus {
+    text-decoration: none !important;
+    outline: none !important;
+  }
+  .iconfont {
+    font-size: inherit;
+  }
 }
