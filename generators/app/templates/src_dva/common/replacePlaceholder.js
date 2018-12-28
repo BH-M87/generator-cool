@@ -1,4 +1,4 @@
-export default (string, regex = /:\w+/g, data = {}) => {
+export default (string = '', regex = /:\w+/g, data = {}) => {
   const placeholders = string.match(regex);
   if (!placeholders) {
     return { string, data };

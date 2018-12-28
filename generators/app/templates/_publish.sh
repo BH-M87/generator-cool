@@ -7,7 +7,7 @@ java_group_name=""
 java_name=""
 java_resources_location="src/main/resources/META-INF/resources"
 java_branch_names=""
-##param end
+## param end
 
 java_git_location="${java_git_repository}:${java_group_name}/${java_name}.git"
 java_project_location="${js_home}/${relative_location}${java_name}"
@@ -24,12 +24,13 @@ echo ${java_git_location} \
 && git clone ${java_git_location}
 fi 
 
+# if use onebox-localify, add following script after npm run build
+# && echo 'Run build finished!!! Start onebox-localify!!!' \
+# && onebox-localify --scan-path ./build --backend-path / \
+# && echo 'Finish onebox-localify!!!' \
 cd ${js_home} \
 && git pull \
 && npm run build \
-&& echo 'Run build finished!!! Start onebox-localify!!!' \
-&& onebox-localify --scan-path ./build --backend-path / \
-&& echo 'Finish onebox-localify!!!' \
 && cd ${java_project_location} \
 && for java_branch_name in ${java_branch_names};
 do 
