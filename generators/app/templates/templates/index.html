@@ -29,10 +29,15 @@
       <script src="//f.alicdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//g.alicdn.com/aliyun/console/1.3.32/vendor/respond/dest/respond.min.js"></script>
     <![endif]-->
-    <link
-      href="https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.css"
-      rel="stylesheet"
-    />
+    <script>
+      // config this css url
+      const mainCssUrl =
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.css';
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = `${mainCssUrl}?time=${Date.now()}`;
+      document.head.appendChild(link);
+    </script>
   </head>
 
   <body>
@@ -43,9 +48,20 @@
       </div>
     <![endif]-->
     <div id="app"></div>
-    <script
-      type="text/javascript"
-      src="https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.js"
-    ></script>
+    <script>
+      // config this js url
+      const mainJsUrl =
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.js';
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+
+      script.onerror = function(error) {
+        console.error(`${url}load error!`, error);
+      };
+
+      script.src = `${mainJsUrl}?time=${Date.now()}`;
+      document.body.appendChild(script);
+    </script>
   </body>
 </html>

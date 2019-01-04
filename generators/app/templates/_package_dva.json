@@ -43,6 +43,7 @@
     "antd": "^3.10.7",
     "classnames": "^2.2.5",
     "dva": "^2.4.1",
+    "dva-loading": "^2.0.6",
     "haversine-distance": "^1.1.3",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
