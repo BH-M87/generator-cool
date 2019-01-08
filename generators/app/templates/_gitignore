@@ -3,3 +3,4 @@ build
 .build
 npm-debug.log*
 .happypack
+.DS_Store
