@@ -71,7 +71,7 @@
         script.type = 'text/javascript';
 
         script.onerror = function(error) {
-          console.error(`${url}load error!`, error);
+          console.error(`${url}: load error!`, error);
         };
 
         script.src = `${url}?time=${Date.now()}`;
