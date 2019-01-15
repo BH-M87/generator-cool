@@ -71,8 +71,16 @@ class GeneratorCool extends Generator {
     this.fs.copy(this.templatePath('_tsconfig.json'), this.destinationPath('tsconfig.json'));
 
     this.fs.copy(
+      this.templatePath('_cool.config.js'),
+      this.destinationPath('.cool.config.js')
+    );
+    this.fs.copy(
       this.templatePath('_cool.dev.config.js'),
       this.destinationPath('.cool.dev.config.js')
+    );
+    this.fs.copy(
+      this.templatePath('_cool.prod.config.js'),
+      this.destinationPath('.cool.prod.config.js')
     );
 
     this.fs.copy(this.templatePath('_mock.js'), this.destinationPath('.mock.js'));

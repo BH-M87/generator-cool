@@ -30,13 +30,30 @@
       <script src="//g.alicdn.com/aliyun/console/1.3.32/vendor/respond/dest/respond.min.js"></script>
     <![endif]-->
     <script>
+      function getStyle(url) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = `${url}?time=${Date.now()}`;
+        document.head.appendChild(link);
+      }
+      function loadStyles(url) {
+        if (!url) {
+          return;
+        }
+        if (Array.isArray(url)) {
+          url.forEach(value => {
+            getStyle(value);
+          });
+        } else {
+          getStyle(url);
+        }
+      }
       // config this css url
-      const mainCssUrl =
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.css';
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = `${mainCssUrl}?time=${Date.now()}`;
-      document.head.appendChild(link);
+      const mainCssUrl = [
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/vendors~main.css',
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.css',
+      ];
+      loadStyles(mainCssUrl);
     </script>
   </head>
 
@@ -49,19 +66,41 @@
     <![endif]-->
     <div id="app"></div>
     <script>
+      function getJS(url) {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+
+        script.onerror = function(error) {
+          console.error(`${url}load error!`, error);
+        };
+
+        script.src = `${url}?time=${Date.now()}`;
+        document.body.appendChild(script);
+      }
+      function loadScripts(url) {
+        if (!url) {
+          return;
+        }
+        if (Array.isArray(url)) {
+          for (const currentValue of url) {
+            if (Array.isArray(currentValue)) {
+              /* eslint no-await-in-loop:0 */ /* design to wait to execute one by one */
+              currentValue.map(value => getJS(value));
+            } else if (currentValue) {
+              getJS(currentValue);
+            }
+          }
+        } else {
+          getJS(url);
+        }
+      }
       // config this js url
-      const mainJsUrl =
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.js';
-
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-
-      script.onerror = function(error) {
-        console.error(`${url}load error!`, error);
-      };
-
-      script.src = `${mainJsUrl}?time=${Date.now()}`;
-      document.body.appendChild(script);
+      const mainJsUrl = [
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/runtime~main.js',
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/vendors~main.js',
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.js',
+      ];
+      loadScripts(mainJsUrl);
     </script>
   </body>
 </html>
