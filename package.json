@@ -1,6 +1,6 @@
 {
   "name": "generator-cool",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "A generator using Yoeman to generate files for endusers.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "MIT",
