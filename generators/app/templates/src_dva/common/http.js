@@ -1,4 +1,3 @@
-/* global location */
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 import URLSearchParams from 'url-search-params';
