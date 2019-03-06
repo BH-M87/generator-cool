@@ -26,7 +26,8 @@ fi
 
 # if use onebox-localify, add following script after npm run build
 # && echo 'Run build finished!!! Start onebox-localify!!!' \
-# && onebox-localify --scan-path ./build --backend-path / \
+# && onebox-localify --scan-path ./build --backend-path ./ \
+# && onebox-localify --scan-path ./build/externals --backend-path ./ \
 # && echo 'Finish onebox-localify!!!' \
 cd ${js_home} \
 && git pull \
