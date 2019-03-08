@@ -2,7 +2,11 @@
   "assets": {
     "type": "command",
     "command": {
-      "cmd": ["tnpm install", "tnpm run build", "mv ./build $BUILD_DEST"]
+      "cmd": [
+        "tnpm install",
+        "cool-cli build --publicPath='https://g-assets.daily.taobao.net/${git_group_name}/${git_project_name}/${version}/'",
+        "mv ./build $BUILD_DEST"
+      ]
     }
   }
 }
