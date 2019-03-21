@@ -4,11 +4,10 @@
     <meta name="data-spm" />
     <meta charset="utf-8" />
     <meta httpequiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="version" content="<%=require('../package.json').version%>" />
-    <meta name="publishTime" content="<%=Date()%>" />
+    <meta name="version" content="def_cdn" />
     <meta
       name="description"
-      content="<%=require('../package.json').description%>"
+      content="description"
     />
     <meta
       name="viewport"
@@ -17,10 +16,6 @@
     <title>Title</title>
     <link rel="icon" href="" type="image/png" />
     <link rel="shortcut icon" href="" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="//at.alicdn.com/t/font_467405_5witw82lx3c.css"
-    />
     <!--[if lt IE 9]>
       <script
         src="//g.alicdn.com/alishu/common/0.0.15/fuck-ie.js"
@@ -30,10 +25,94 @@
       <script src="//g.alicdn.com/aliyun/console/1.3.32/vendor/respond/dest/respond.min.js"></script>
     <![endif]-->
     <script>
+      window.ENV = 'daily';
+      window.buildManifestUrl =
+        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/build-manifest.json';
+    </script>
+    <script>
+      function ajax(params) {
+        params = params || {};
+        params.data = params.data || {};
+        // 判断是ajax请求还是jsonp请求
+        var json = json(params);
+        // ajax请求
+        function json(params) {
+          // 请求方式，默认是GET
+          params.type = (params.type || 'GET').toUpperCase();
+          // 避免有特殊字符，必须格式化传输数据
+          params.data = formatParams(params.data);
+          var xhr = null;
+
+          // 实例化XMLHttpRequest对象
+          if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+          } else {
+            // IE6及其以下版本
+            xhr = new ActiveXObjcet('Microsoft.XMLHTTP');
+          }
+
+          // 监听事件，只要 readyState 的值变化，就会调用 readystatechange 事件
+          xhr.onreadystatechange = function() {
+            // readyState属性表示请求/响应过程的当前活动阶段，4为完成，已经接收到全部响应数据
+            if (xhr.readyState == 4) {
+              var status = xhr.status;
+              // status：响应的HTTP状态码，以2开头的都是成功
+              if (status >= 200 && status < 300) {
+                var response = '';
+                // 判断接受数据的内容类型
+                var type = xhr.getResponseHeader('Content-type');
+                if (type.indexOf('xml') !== -1 && xhr.responseXML) {
+                  response = xhr.responseXML; //Document对象响应
+                } else if (type === 'application/json') {
+                  response = JSON.parse(xhr.responseText); //JSON响应
+                } else {
+                  response = xhr.responseText; //字符串响应
+                }
+                // 成功回调函数
+                params.success && params.success(response);
+              } else {
+                params.error && params.error(status);
+              }
+            }
+          };
+
+          // 连接和传输数据
+          if (params.type == 'GET') {
+            // 三个参数：请求方式、请求地址(get方式时，传输数据是加在地址后的)、是否异步请求(同步请求的情况极少)；
+            xhr.open(params.type, params.url + '?' + params.data, true);
+            xhr.send(null);
+          } else {
+            xhr.open(params.type, params.url, true);
+            //必须，设置提交时的内容类型
+            xhr.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded; charset=UTF-8'
+            );
+            // 传输数据
+            xhr.send(params.data);
+          }
+        }
+
+        //格式化参数
+        function formatParams(data) {
+          var arr = [];
+          for (var name in data) {
+            // encodeURIComponent() ：用于对 URI 中的某一部分进行编码
+            arr.push(
+              encodeURIComponent(name) + '=' + encodeURIComponent(data[name])
+            );
+          }
+          // 添加一个时间戳，防止缓存
+          arr.push('t=' + Date.now());
+          return arr.join('&');
+        }
+      }
+    </script>
+    <script>
       function getStyle(url) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = `${url}?time=${Date.now()}`;
+        link.href = url;
         document.head.appendChild(link);
       }
       function loadStyles(url) {
@@ -48,23 +127,7 @@
           getStyle(url);
         }
       }
-      // config this css url
-      const mainCssUrl = [
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/vendors~main.css',
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.css',
-      ];
-      loadStyles(mainCssUrl);
     </script>
-  </head>
-
-  <body>
-    <!--[if lt IE 9]>
-      <div style="width:100%;height:60px;">
-        <p>为了保障您的完美体验，请升级您的浏览器至Internet Explorer 9以上。</p>
-        <p>推荐使用Chrome或者Firefox等现代浏览器</p>
-      </div>
-    <![endif]-->
-    <div id="app"></div>
     <script>
       function getJS(url) {
         const script = document.createElement('script');
@@ -74,7 +137,7 @@
           console.error(`${url}: load error!`, error);
         };
 
-        script.src = `${url}?time=${Date.now()}`;
+        script.src = url;
         document.body.appendChild(script);
       }
       function loadScripts(url) {
@@ -94,13 +157,66 @@
           getJS(url);
         }
       }
-      // config this js url
-      const mainJsUrl = [
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/runtime~main.js',
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/vendors~main.js',
-        'https://g-assets.daily.taobao.net/${gitlab_group_name}/${gitlab_group_project_name}/${version}/main.js',
-      ];
-      loadScripts(mainJsUrl);
     </script>
+    <script>
+      function loadResources(manifest) {
+        const resources = JSON.parse(manifest);
+        const jsResources = [];
+        const cssResources = [];
+        const resourcesSequence = {
+          'runtime~main': 0,
+          'vendors~main': 1,
+          main: 2,
+        };
+        Object.keys(resources)
+          .sort(function(a, b) {
+            const pre = resourcesSequence[a] || -1;
+            const after = resourcesSequence[b] || -1;
+            return pre - after;
+          })
+          .forEach(function(key) {
+            const value = resources[key] || {};
+            if (key === 'null') {
+              // lazy resources, key === 'null'
+              return;
+            }
+            if (value.js) {
+              jsResources.push(
+                Array.isArray(value.js) && value.js.length === 1
+                  ? value.js[0]
+                  : value.js
+              );
+            }
+            if (value.css) {
+              cssResources.push(
+                Array.isArray(value.css) && value.css.length === 1
+                  ? value.css[0]
+                  : value.css
+              );
+            }
+          });
+
+        loadStyles(cssResources);
+        loadScripts(jsResources);
+      }
+      const buildManifest = ajax({
+        url: window.buildManifestUrl,
+        success: loadResources,
+      });
+    </script>
+  </head>
+
+  <body>
+    <!--[if lt IE 9]>
+      <div style="width:100%;height:60px;">
+        <p>为了保障您的完美体验，请升级您的浏览器至Internet Explorer 9以上。</p>
+        <p>推荐使用Chrome或者Firefox等现代浏览器</p>
+      </div>
+    <![endif]-->
+    <div id="app"></div>
+    <!-- <script
+      type="text/javascript"
+      src="https://g-assets.daily.taobao.net/police-brain/data-exploration-fe/1.6.0/main.js?time=<%=Date.now()%>"
+    ></script> -->
   </body>
 </html>
