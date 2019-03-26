@@ -114,8 +114,6 @@ class GeneratorCool extends Generator {
     this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
 
     // def config:
-    // .assetsmetafile
-    this.fs.copy(this.templatePath('_assetsmetafile'), this.destinationPath('.assetsmetafile'));
     // abc.json
     this.fs.copy(this.templatePath('_abc.json'), this.destinationPath('abc.json'));
     // templates: index.html and others
