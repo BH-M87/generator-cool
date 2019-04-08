@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router';
+import PropTypes from 'prop-types';
+import { Route } from 'dva/router';
 import DocumentTitle from 'react-document-title';
-import PropTypes from 'common/PropTypes';
 
 const RouteWithTitle = ({
   title, cnName, children, exact, isReverse, ...restProps
