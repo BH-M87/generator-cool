@@ -23,7 +23,7 @@ module.exports = {
           ) {
             return originalUrl;
           }
-          return false;
+          return undefined;
         },
       },
     },
