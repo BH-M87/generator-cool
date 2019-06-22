@@ -25,11 +25,11 @@ const gen = param => {
   };
 };
 
-const APIFunction = {};
+const API = {};
 for (const key in api) {
   if (Object.prototype.hasOwnProperty.call(api, key)) {
-    APIFunction[key] = gen(api[key]);
+    API[key] = gen(api[key]);
   }
 }
 
-export default APIFunction;
+export default API;

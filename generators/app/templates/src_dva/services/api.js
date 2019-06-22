@@ -1,5 +1,5 @@
-// config all the api here, and retrive the data with APIFunction.api();
-// PS: import APIFunction from 'services';
+// config all the api here, and retrive the data with API.api();
+// PS: import API from 'services';
 export default {
   defaultGet: '/get',
   get: 'GET /get',
