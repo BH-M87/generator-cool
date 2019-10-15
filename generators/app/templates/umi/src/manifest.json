@@ -1,0 +1,14 @@
+{
+  "name": "zplan",
+  "short_name": "zplan",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "pwaLogo.png",
+      "sizes": "74x74"
+    }
+  ]
+}

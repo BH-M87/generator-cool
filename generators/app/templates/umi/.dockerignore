@@ -1,0 +1,11 @@
+node_modules
+mock
+public
+src
+docs
+git_stats
+.
+publish.sh
+README.md
+*.tgz
+*.tar
