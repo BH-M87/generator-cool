@@ -10,47 +10,47 @@ class GeneratorCool extends Generator {
         default: 'dva',
         choices: [
           {
-            name: 'umi',
-            value: 'umi',
-            short: 'umi',
-          },
-          {
             name: 'dva',
             value: 'dva',
-            short: 'dva',
+            short: 'dva'
           },
           {
             name: 'mobx',
             value: 'mobx',
-            short: 'mobx',
+            short: 'mobx'
           },
-        ],
+          {
+            name: 'umi',
+            value: 'umi',
+            short: 'umi'
+          }
+        ]
       },
       {
         type: 'input',
         name: 'name',
         message: 'Your project name',
         // Defaults to the project's folder name if not specified
-        default: this.appname,
+        default: this.appname
       },
       {
         type: 'input',
         name: 'title',
         message: 'Please enter a title for your project html file',
-        default: 'Title',
+        default: 'Title'
       },
       {
         type: 'input',
         name: 'description',
         message: 'Please enter a description for your project',
-        default: 'Cool project!!!',
+        default: 'Cool project!!!'
       },
       {
         type: 'confirm',
         name: 'installDeps',
         message: 'Would you like to install all dependencies now?',
-        default: false,
-      },
+        default: false
+      }
     ]).then(answers => {
       this.props = answers;
     });
@@ -61,10 +61,10 @@ class GeneratorCool extends Generator {
     // .vscode config
     this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
     if (this.props.stateContainerType === 'umi') {
-      this.fs.copyTpl(this.templatePath('umi'), this.destinationPath(''), {
+      this.fs.copyTpl(this.templatePath('umi/.'), this.destinationPath('./'), {
         name: this.props.name,
         description: this.props.description,
-        title: this.props.title,
+        title: this.props.title
       });
       return;
     }
@@ -74,30 +74,18 @@ class GeneratorCool extends Generator {
       this.destinationPath('package.json'),
       {
         name: this.props.name,
-        description: this.props.description,
+        description: this.props.description
       }
     );
 
     // .gitignore
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
+    this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
 
-    this.fs.copy(
-      this.templatePath('_eslintrc.js'),
-      this.destinationPath('.eslintrc.js')
-    );
+    this.fs.copy(this.templatePath('_eslintrc.js'), this.destinationPath('.eslintrc.js'));
 
-    this.fs.copy(
-      this.templatePath('_jsconfig.json'),
-      this.destinationPath('jsconfig.json')
-    );
+    this.fs.copy(this.templatePath('_jsconfig.json'), this.destinationPath('jsconfig.json'));
 
-    this.fs.copy(
-      this.templatePath('_cool.config.js'),
-      this.destinationPath('.cool.config.js')
-    );
+    this.fs.copy(this.templatePath('_cool.config.js'), this.destinationPath('.cool.config.js'));
     this.fs.copy(
       this.templatePath('_cool.dev.config.js'),
       this.destinationPath('.cool.dev.config.js')
@@ -107,30 +95,17 @@ class GeneratorCool extends Generator {
       this.destinationPath('.cool.prod.config.js')
     );
 
-    this.fs.copy(
-      this.templatePath('_mock.js'),
-      this.destinationPath('.mock.js')
-    );
+    this.fs.copy(this.templatePath('_mock.js'), this.destinationPath('.mock.js'));
 
-    this.fs.copy(
-      this.templatePath('_prettierrc'),
-      this.destinationPath('.prettierrc')
-    );
+    this.fs.copy(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'));
 
-    this.fs.copyTpl(
-      this.templatePath('_README.md'),
-      this.destinationPath('README.md'),
-      {
-        name: this.props.name,
-        description: this.props.description,
-      }
-    );
+    this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
+      name: this.props.name,
+      description: this.props.description
+    });
 
     // copy shell
-    this.fs.copy(
-      this.templatePath('_publish.sh'),
-      this.destinationPath('publish.sh')
-    );
+    this.fs.copy(this.templatePath('_publish.sh'), this.destinationPath('publish.sh'));
     this.fs.copy(
       this.templatePath('_installExtension.sh'),
       this.destinationPath('installExtension.sh')
@@ -143,21 +118,15 @@ class GeneratorCool extends Generator {
       {
         name: this.props.name,
         description: this.props.description,
-        title: this.props.title,
+        title: this.props.title
       }
     );
 
     // def config:
     // abc.json
-    this.fs.copy(
-      this.templatePath('_abc.json'),
-      this.destinationPath('abc.json')
-    );
+    this.fs.copy(this.templatePath('_abc.json'), this.destinationPath('abc.json'));
     // templates: index.html and others
-    this.fs.copy(
-      this.templatePath('templates'),
-      this.destinationPath('templates')
-    );
+    this.fs.copy(this.templatePath('templates'), this.destinationPath('templates'));
   }
 
   install() {
