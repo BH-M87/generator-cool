@@ -1,3 +1,4 @@
 {
-  "extends": "eslint-config-umi"
+  "parser": "babel-eslint",
+  "extends": "cool"
 }

@@ -18,7 +18,7 @@
     "babel-eslint": "^9.0.0",
     "commitizen": "^4.0.3",
     "eslint": "^5.4.0",
-    "eslint-config-umi": "^1.4.0",
+    "eslint-config-cool": "^0.1.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
@@ -33,7 +33,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "lint-staged": {
