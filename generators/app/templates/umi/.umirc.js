@@ -1,8 +1,25 @@
+const TARGETS = {
+  mock: 'https://mocks.alibaba-inc.com/mock/vplan',
+};
+const TARGET = TARGETS[process.env.PROXY_TARGET];
+
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
   hash: true,
   publicPath: './',
+  proxy: {
+    context: (pathname, req) => {
+      return req.headers['x-requested-with'] === 'XMLHttpRequest';
+    },
+    target: TARGET,
+    changeOrigin: true,
+    ws: true,
+    onProxyReqWs: proxyReq => {
+      proxyReq.setHeader('origin', TARGET);
+    },
+    secure: false,
+  },
   plugins: [
     [
       'umi-plugin-react',
@@ -48,5 +65,10 @@ export default {
   ],
   chainWebpack(config) {
     config.resolve.modules.add(resolve(__dirname, './src'));
+    config.module
+      .rule('worker-loader')
+      .test(/\.worker\.js$/i)
+      .use('worker-loader')
+      .loader('file-loader');
   },
 };

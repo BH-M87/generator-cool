@@ -11,9 +11,11 @@
   "dependencies": {
     "antd": "^3.19.5",
     "dva": "^2.6.0-beta.6",
+    "lodash-es": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "umi": "^2.7.7"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
@@ -28,9 +30,9 @@
     "lint-staged": "^7.2.2",
     "prettier": "^1.18.2",
     "react-test-renderer": "^16.7.0",
-    "umi": "^2.7.7",
     "umi-plugin-react": "^1.8.4",
-    "webpack-bundle-analyzer": "^3.4.1"
+    "webpack-bundle-analyzer": "^3.4.1",
+    "worker-loader": "^2.0.0"
   },
   "husky": {
     "hooks": {
