@@ -61,7 +61,7 @@ class GeneratorCool extends Generator {
     // .vscode config
     this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
     if (this.props.stateContainerType === 'umi') {
-      this.fs.copyTpl(this.templatePath('umi/.'), this.destinationPath('./'), {
+      this.fs.copyTpl(this.templatePath('umi/.*'), this.destinationPath('./'), {
         name: this.props.name,
         description: this.props.description,
         title: this.props.title
