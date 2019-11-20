@@ -7,8 +7,13 @@ class GeneratorCool extends Generator {
         type: 'list',
         name: 'stateContainerType',
         message: 'Which state container would you like to use?',
-        default: 'dva',
+        default: 'umi',
         choices: [
+          {
+            name: 'umi',
+            value: 'umi',
+            short: 'umi'
+          },
           {
             name: 'dva',
             value: 'dva',
@@ -18,11 +23,6 @@ class GeneratorCool extends Generator {
             name: 'mobx',
             value: 'mobx',
             short: 'mobx'
-          },
-          {
-            name: 'umi',
-            value: 'umi',
-            short: 'umi'
           }
         ]
       },
@@ -31,7 +31,7 @@ class GeneratorCool extends Generator {
         name: 'name',
         message: 'Your project name',
         // Defaults to the project's folder name if not specified
-        default: this.appname
+        default: this.appname.replace(' ', '-')
       },
       {
         type: 'input',
@@ -61,11 +61,13 @@ class GeneratorCool extends Generator {
     // .vscode config
     this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
     if (this.props.stateContainerType === 'umi') {
-      this.fs.copyTpl(this.templatePath('umi/.*'), this.destinationPath('./'), {
+      this.fs.copyTpl(this.templatePath('umi'), this.destinationPath('./'), {
         name: this.props.name,
         description: this.props.description,
         title: this.props.title
       });
+      // copy hidden files
+      this.fs.copy(this.templatePath('umi/.*'), this.destinationPath('./'));
       return;
     }
     // copy package.json, dependent on state container choice
@@ -79,13 +81,25 @@ class GeneratorCool extends Generator {
     );
 
     // .gitignore
-    this.fs.copy(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
 
-    this.fs.copy(this.templatePath('_eslintrc.js'), this.destinationPath('.eslintrc.js'));
+    this.fs.copy(
+      this.templatePath('_eslintrc.js'),
+      this.destinationPath('.eslintrc.js')
+    );
 
-    this.fs.copy(this.templatePath('_jsconfig.json'), this.destinationPath('jsconfig.json'));
+    this.fs.copy(
+      this.templatePath('_jsconfig.json'),
+      this.destinationPath('jsconfig.json')
+    );
 
-    this.fs.copy(this.templatePath('_cool.config.js'), this.destinationPath('.cool.config.js'));
+    this.fs.copy(
+      this.templatePath('_cool.config.js'),
+      this.destinationPath('.cool.config.js')
+    );
     this.fs.copy(
       this.templatePath('_cool.dev.config.js'),
       this.destinationPath('.cool.dev.config.js')
@@ -95,17 +109,30 @@ class GeneratorCool extends Generator {
       this.destinationPath('.cool.prod.config.js')
     );
 
-    this.fs.copy(this.templatePath('_mock.js'), this.destinationPath('.mock.js'));
+    this.fs.copy(
+      this.templatePath('_mock.js'),
+      this.destinationPath('.mock.js')
+    );
 
-    this.fs.copy(this.templatePath('_prettierrc'), this.destinationPath('.prettierrc'));
+    this.fs.copy(
+      this.templatePath('_prettierrc'),
+      this.destinationPath('.prettierrc')
+    );
 
-    this.fs.copyTpl(this.templatePath('_README.md'), this.destinationPath('README.md'), {
-      name: this.props.name,
-      description: this.props.description
-    });
+    this.fs.copyTpl(
+      this.templatePath('_README.md'),
+      this.destinationPath('README.md'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
+    );
 
     // copy shell
-    this.fs.copy(this.templatePath('_publish.sh'), this.destinationPath('publish.sh'));
+    this.fs.copy(
+      this.templatePath('_publish.sh'),
+      this.destinationPath('publish.sh')
+    );
     this.fs.copy(
       this.templatePath('_installExtension.sh'),
       this.destinationPath('installExtension.sh')
@@ -124,9 +151,15 @@ class GeneratorCool extends Generator {
 
     // def config:
     // abc.json
-    this.fs.copy(this.templatePath('_abc.json'), this.destinationPath('abc.json'));
+    this.fs.copy(
+      this.templatePath('_abc.json'),
+      this.destinationPath('abc.json')
+    );
     // templates: index.html and others
-    this.fs.copy(this.templatePath('templates'), this.destinationPath('templates'));
+    this.fs.copy(
+      this.templatePath('templates'),
+      this.destinationPath('templates')
+    );
   }
 
   install() {

@@ -1,5 +1,7 @@
+import { resolve } from 'path';
+
 const TARGETS = {
-  mock: 'https://mocks.alibaba-inc.com/mock/vplan',
+  mock: 'https://mocks.alibaba-inc.com/mock/xxx',
 };
 const TARGET = TARGETS[process.env.PROXY_TARGET];
 
