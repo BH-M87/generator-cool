@@ -1,6 +1,6 @@
 {
-  "name": "zplan",
-  "short_name": "zplan",
+  "name": "appname",
+  "short_name": "appname",
   "display": "browser",
   "scope": "/",
   "start_url": "/",

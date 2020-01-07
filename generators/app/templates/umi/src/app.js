@@ -1,3 +1,5 @@
+import 'utils/http';
+
 export const dva = {
   config: {
     onError(err) {

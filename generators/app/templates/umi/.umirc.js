@@ -1,12 +1,17 @@
 import { resolve } from 'path';
 
-const TARGETS = {
+export const TARGETS = {
   mock: 'https://mocks.alibaba-inc.com/mock/xxx',
+  dev: 'https://devTarget',
 };
 const TARGET = TARGETS[process.env.PROXY_TARGET];
 
 // ref: https://umijs.org/config/
 export default {
+  define: {
+    'process.env.UMI_ENV': process.env.UMI_ENV,
+  },
+  manifest: {},
   treeShaking: true,
   hash: true,
   publicPath: './',
@@ -40,15 +45,7 @@ export default {
         dva: {
           dynamicImport: undefined,
         },
-        dll: {
-          // exclude: [
-          //   'react',
-          //   'react-dom',
-          //   'prop-types',
-          //   // 'antd',
-          //   'moment',
-          // ],
-        },
+        dll: {},
         dynamicImport: {
           webpackChunkName: true,
           loadingComponent: 'components/Empty',

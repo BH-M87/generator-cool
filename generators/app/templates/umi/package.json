@@ -3,8 +3,11 @@
   "description": "<%= description %>",
   "private": true,
   "scripts": {
-    "start": "cross-env PORT=8000 PROXY_TARGET=mock umi dev",
+    "start": "npm run start:mock",
+    "start:mock": "cross-env PORT=8000 PROXY_TARGET=mock umi dev",
+    "start:def": "cross-env PORT=8000 UMI_ENV=def PROXY_TARGET=mock umi dev",
     "build": "umi build",
+    "build:def": "cross-env UMI_ENV=def umi build",
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
     "docker:build": "./docker/scripts/docker.build.sh"

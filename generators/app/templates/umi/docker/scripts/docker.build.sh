@@ -1,7 +1,7 @@
 #!/bin/bash
 git pull &&
     npm version patch &&
-    git push
+    git push --tags
 
 name=$(awk '$1=="\"name\":" {print $2}' ./package.json)
 name=${name#*\"}

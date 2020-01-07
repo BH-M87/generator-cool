@@ -1,5 +1,5 @@
 /* global workbox */
-workbox.core.setCacheNameDetails({ prefix: 'zplan' });
+workbox.core.setCacheNameDetails({ prefix: 'appname' });
 
 workbox.skipWaiting();
 workbox.clientsClaim();
