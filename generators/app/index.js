@@ -15,6 +15,11 @@ class GeneratorCool extends Generator {
             short: 'umi'
           },
           {
+            name: 'taro',
+            value: 'taro',
+            short: 'taro'
+          },
+          {
             name: 'dva',
             value: 'dva',
             short: 'dva'
@@ -68,6 +73,16 @@ class GeneratorCool extends Generator {
       });
       // copy hidden files
       this.fs.copy(this.templatePath('umi/.*'), this.destinationPath('./'));
+      return;
+    }
+    if (this.props.stateContainerType === 'taro') {
+      this.fs.copyTpl(this.templatePath('taro'), this.destinationPath('./'), {
+        name: this.props.name,
+        description: this.props.description,
+        title: this.props.title
+      });
+      // copy hidden files
+      this.fs.copy(this.templatePath('taro/.*'), this.destinationPath('./'));
       return;
     }
     // copy package.json, dependent on state container choice
