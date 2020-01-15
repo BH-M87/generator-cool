@@ -1,7 +1,8 @@
 {
   "extends": ["cool"],
   "rules": {
-    "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }]
+    "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
+    "react/no-deprecated": 0
   },
   "parser": "babel-eslint"
-  }
+}

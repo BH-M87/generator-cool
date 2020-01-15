@@ -1,58 +1,67 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from '@tarojs/mobx'
-
-import './index.less'
-
+import PropTypes from 'prop-types';
+import Taro, { Component } from '@tarojs/taro';
+import { View, Button, Text } from '@tarojs/components';
+import { observer, inject } from '@tarojs/mobx';
+import './index.less';
 
 @inject('counter')
 @observer
 class Index extends Component {
-
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+  };
+
+  componentWillMount() {}
+
+  componentWillReact() {
+    console.log('componentWillReact');
   }
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentWillReact () {
-    console.log('componentWillReact')
-  }
+  componentWillUnmount() {}
 
-  componentDidMount () { }
+  componentDidShow() {}
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
+  componentDidHide() {}
 
   increment = () => {
-    const { counter } = this.props
-    counter.increment()
-  }
+    const { counter } = this.props;
+    counter.increment();
+  };
 
   decrement = () => {
-    const { counter } = this.props
-    counter.decrement()
-  }
+    const { counter } = this.props;
+    counter.decrement();
+  };
 
   incrementAsync = () => {
-    const { counter } = this.props
-    counter.incrementAsync()
-  }
+    const { counter } = this.props;
+    counter.incrementAsync();
+  };
 
-  render () {
-    const { counter: { counter } } = this.props
+  render() {
+    const {
+      counter: { counter },
+    } = this.props;
     return (
-      <View className='index'>
+      <View className="index">
         <Button onClick={this.increment}>+</Button>
         <Button onClick={this.decrement}>-</Button>
         <Button onClick={this.incrementAsync}>Add Async</Button>
         <Text>{counter}</Text>
       </View>
-    )
+    );
   }
 }
 
-export default Index 
+Index.propTypes = {
+  counter: PropTypes.shape({
+    counter: PropTypes.number,
+    increment: PropTypes.func,
+    decrement: PropTypes.number,
+    incrementAsync: PropTypes.func,
+  }),
+};
+
+export default Index;
