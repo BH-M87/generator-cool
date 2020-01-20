@@ -42,7 +42,7 @@
     "@tarojs/taro-swan": "2.0.0",
     "@tarojs/taro-tt": "2.0.0",
     "@tarojs/taro-weapp": "2.0.0",
-    "cool-utils": "^0.2.2",
+    "cool-utils": "^0.2.3",
     "lodash-es": "^4.17.15",
     "mobx": "4.8.0",
     "nerv-devtools": "^1.5.5",

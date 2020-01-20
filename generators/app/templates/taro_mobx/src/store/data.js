@@ -1,8 +1,8 @@
-import API from "services";
+import API from 'services';
 
 export default {
   data: {},
-  getData(params) {
-    this.data = API.get(params);
-  }
+  async getData(params) {
+    this.data = await API.get(params);
+  },
 };
