@@ -1,6 +1,3 @@
-# Citybrain nginx Dockerfile
-# Version 1.0
-
 # Base images 基础镜像
 FROM reg.docker.alibaba-inc.com/police-brain/nginx:1.16.1
 
