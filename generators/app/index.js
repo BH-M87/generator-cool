@@ -41,19 +41,19 @@ class GeneratorCool extends Generator {
         name: 'name',
         message: 'Your project name',
         // Defaults to the project's folder name if not specified
-        default: this.appname.replace(' ', '-')
+        default: this.appname.replace(/ /g, '-')
       },
       {
         type: 'input',
         name: 'title',
         message: 'Please enter a title for your project html file',
-        default: 'Title'
+        default: this.appname.replace(/ /g, '-')
       },
       {
         type: 'input',
         name: 'description',
         message: 'Please enter a description for your project',
-        default: 'Cool project!!!'
+        default: this.appname.replace(/ /g, '-')
       },
       {
         type: 'confirm',
