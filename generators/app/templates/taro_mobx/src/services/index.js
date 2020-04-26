@@ -1,4 +1,7 @@
-import generateAPI from "cool-utils/es/utils/services/generateAPI";
-import api from "./api";
+import { request } from '@tarojs/taro';
+import genAPI from 'cool-utils/es/utils/services/genAPI';
+import api from './api';
 
-export default generateAPI(api);
+export default genAPI(api, ({ method, path, data, headers, config } = {}) =>
+  request({ method, url: path, data, headers, ...config }),
+);

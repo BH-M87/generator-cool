@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "party-mini-fe",
-  "description": "智慧党建",
-  "appid": "touristappid",
+  "projectname": "cool-miniapp",
+  "description": "cool-miniapp",
+  "appid": "cool-miniapp-appid",
   "setting": {
     "urlCheck": true,
     "es6": false,

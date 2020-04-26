@@ -13,9 +13,7 @@ class Index extends Component {
 
   componentWillMount() {}
 
-  componentWillReact() {
-    console.log('componentWillReact');
-  }
+  componentWillReact() {}
 
   componentDidMount() {}
 
