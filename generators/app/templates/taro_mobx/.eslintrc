@@ -1,8 +1,9 @@
 {
   "extends": ["cool"],
+  "parser": "babel-eslint",
   "rules": {
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
     "react/no-deprecated": 0
   },
-  "parser": "babel-eslint"
+  "globals": { "my": true, "dd": true, "Page": true, "Component": true }
 }

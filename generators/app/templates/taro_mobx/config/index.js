@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-commonjs */
 const { resolve } = require("path");
+const packageJson = require("../package.json");
 
 function webpackChain(chain) {
   chain.resolve.modules.add(resolve(__dirname, "../src"));
@@ -22,8 +23,7 @@ const cssModules = {
 };
 
 const config = {
-  projectName: "party-mini-fe",
-  date: "2020-1-13",
+  projectName: packageJson.name,
   designWidth: 750,
   deviceRatio: {
     "640": 2.34 / 2,
