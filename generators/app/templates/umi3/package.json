@@ -1,0 +1,48 @@
+{
+  "name": "<%= name %>",
+  "version": "1.0.0",
+  "description": "<%= description %>",
+  "private": true,
+  "scripts": {
+    "start": "npm run start:mock",
+    "start:mock": "cross-env PORT=8000 PROXY_TARGET=mock umi dev",
+    "start:def": "cross-env PORT=8000 UMI_ENV=def PROXY_TARGET=mock umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash-es": "^4.17.15",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "umi": "^3.2.0-beta.6"
+  },
+  "devDependencies": {
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.2.0-beta.6",
+    "commitizen": "^4.1.2",
+    "cross-env": "^7.0.2",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "yorkie": "^2.0.0"
+  }
+}

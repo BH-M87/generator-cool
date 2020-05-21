@@ -15,6 +15,11 @@ class GeneratorCool extends Generator {
             short: 'umi'
           },
           {
+            name: 'umi@3+',
+            value: 'umi@3+',
+            short: 'umi@3+'
+          },
+          {
             name: 'taro',
             value: 'taro',
             short: 'taro'
@@ -70,6 +75,16 @@ class GeneratorCool extends Generator {
     this.log('writing');
     // .vscode config
     this.fs.copy(this.templatePath('.vscode'), this.destinationPath('.vscode'));
+    if (this.props.stateContainerType === 'umi@3+') {
+      this.fs.copyTpl(this.templatePath('umi3'), this.destinationPath('./'), {
+        name: this.props.name,
+        description: this.props.description,
+        title: this.props.title
+      });
+      // copy hidden files
+      this.fs.copy(this.templatePath('umi3/.*'), this.destinationPath('./'));
+      return;
+    }
     if (this.props.stateContainerType === 'umi') {
       this.fs.copyTpl(this.templatePath('umi'), this.destinationPath('./'), {
         name: this.props.name,
