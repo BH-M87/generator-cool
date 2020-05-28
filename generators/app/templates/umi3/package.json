@@ -8,6 +8,7 @@
     "start:mock": "cross-env PORT=8000 PROXY_TARGET=mock umi dev",
     "start:def": "cross-env PORT=8000 UMI_ENV=def PROXY_TARGET=mock umi dev",
     "build": "umi build",
+    "docker:build": "./docker/scripts/docker.build.sh",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
