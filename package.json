@@ -2,11 +2,11 @@
   "name": "generator-cool",
   "version": "0.4.0",
   "description": "A generator using Yoeman to generate files for endusers.",
-  "author": "RJAVA1990<liuxuheng1990@gmail.com>",
+  "author": "Yonggu<xuheng.lxh@alibaba-inc.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:RJAVA1990/generator-cool.git"
+    "url": "git@gitlab.alibaba-inc.com:police-brain-fe/generator-cool.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
