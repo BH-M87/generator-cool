@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "npm run start:mock",
+    "start:dev": "cross-env PORT=8000 PROXY_TARGET=dev umi dev",
     "start:mock": "cross-env PORT=8000 PROXY_TARGET=mock umi dev",
     "start:def": "cross-env PORT=8000 UMI_ENV=def PROXY_TARGET=mock umi dev",
     "build": "umi build",

@@ -2,7 +2,7 @@ import axios from './axios';
 import isObject from '../isObject';
 
 interface API {
-  method: 'get' | 'post' | 'delete' | 'put' | 'form';
+  method?: 'get' | 'post' | 'delete' | 'put' | 'form';
   url: string;
   data: any;
 }
@@ -16,6 +16,7 @@ export function get(api: string | API, params = {}, headers = {}, config = {}) {
         }
       : {
           method: 'get',
+          url: api as string,
           params,
           headers,
           ...config,
@@ -32,6 +33,7 @@ export function post(api: string | API, data = {}, headers = {}, config = {}) {
         }
       : {
           method: 'post',
+          url: api as string,
           data,
           headers,
           ...config,
@@ -53,6 +55,7 @@ export function deleteMethod(
         }
       : {
           method: 'delete',
+          url: api as string,
           data,
           headers,
           ...config,
@@ -69,6 +72,7 @@ export function put(api: string | API, data = {}, headers = {}, config = {}) {
         }
       : {
           method: 'put',
+          url: api as string,
           data,
           headers,
           ...config,
